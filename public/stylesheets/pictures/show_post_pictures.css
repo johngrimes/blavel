@@ -1,0 +1,15 @@
+table#title {
+    width: 100%;
+}
+
+table#title h1 {
+    margin-bottom: 0px;
+}
+
+#post-title {
+    text-align: right;
+    vertical-align: center;
+    color: #666666;
+    font-size: 13px;
+    padding-right: 10px;
+}

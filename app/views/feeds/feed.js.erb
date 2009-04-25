@@ -1,0 +1,4 @@
+$('.feed-items').empty();
+$('.feed-items').prepend("<%= escape_javascript(render(:partial => 'feeds/feed_item.html.erb', :collection => @feed_items)) %>");
+$('#feed-loading').remove();
+$('.feed-items').fadeIn('slow');

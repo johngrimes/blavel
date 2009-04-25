@@ -1,0 +1,7 @@
+.blavel-error, .blavel-notice {
+    background-color: #FEFFCF;
+    border: 1px solid #EBAE7F;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}

@@ -1,0 +1,12 @@
+<div class="feed-item">
+  <div class="info"><div class="item"><%= time_ago_in_words feed_item.created_at %> ago</div></div>
+  <% if feed_item.class == Note %>
+    <div class="summary note"><%= note_feed_summary(feed_item) %></div>
+  <% elsif feed_item.class == Post %>
+    <div class="summary post"><%= post_feed_summary(feed_item) %></div>
+  <% elsif feed_item.class == Follow %>
+    <div class="summary follow"><%= follow_feed_summary(feed_item) %></div>
+  <% else %>
+    <% raise 'Unknown class encountered in feed items array.' %>
+  <% end %>       
+</div>  

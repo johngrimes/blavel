@@ -1,0 +1,47 @@
+#page {
+    margin: 0px 20px 20px;
+}
+
+hr {
+    border-top: 1px solid #CCCCCC;
+    border-left: 0px solid white;
+    border-right: 0px solid white;
+    border-bottom: 0px solid white;
+    height: 10px;
+}
+
+form {
+    padding: 5px 10px;
+    background-color: #F7F7F7;
+    border: 1px solid #CCCCCC;
+    width: 260px;
+    margin-top: 20px;
+} 
+
+fieldset {
+    padding: 5px 0px;
+    border: 0px;
+}
+
+label {
+    padding-right: 10px;
+}
+
+#submit {
+    background-color: #3B5998;
+    color: #FFFFFF;
+    padding: 5px;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 80px;
+    text-align: center;
+}
+
+.error {
+    background-color: #FEFFCF;
+    border: 1px solid #EBAE7F;
+    padding: 5px;
+    width: 260px;
+}

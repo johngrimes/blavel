@@ -1,0 +1,135 @@
+<% @slogan = 'Travel blogs, stories from around the world!' -%>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en" >
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="<%= @description %>" />
+    <title><%= @title %><%= @title.blank? ? '' : ' | ' %>Blavel! Travel blogs, stories from around the world!</title>
+    <%= stylesheet_link_tag 'reset', 'base', 'standard', :cache => 'cache/standard_all' %>
+    <%= yield :styles %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= yield :scripts %>
+  </head>
+
+  <body>
+    <div id="page">
+
+      <div id="header">
+
+        <div id="masthead">
+
+          <div id="logo">
+            <a href="/" title="<%= @slogan %>"><img src="/images/logo-med.png" width="210" height="80" alt="<%= @slogan %>"/></a>
+          </div>
+
+          <div id="slogan">
+            <%= @slogan %>
+          </div>
+
+          <div class="nav">
+
+            <% if logged_in? %>
+              <div class="lb"><div class="rb"><div class="item">
+                    <%= link_to 'post', new_post_url %>
+              </div></div></div>
+              <div class="lb"><div class="rb"><div class="item">
+                    <%= link_to 'my&nbsp;blavel', user_profile_url(:user_login => current_user.login, :page => nil) %>
+              </div></div></div>
+              <div class="lb"><div class="rb"><div class="item">
+                    <% unread_count = Message.count(:conditions => { :recipient_id => current_user.id, :read => false }) %>
+                    <%= link_to (unread_count > 0) ? "messages (#{unread_count})" : 'messages', manage_messages_url %>
+              </div></div></div>
+            <% end %>
+            <div class="lb"><div class="rb"><div class="item">
+                  <%= link_to 'browse', browse_url(:page => nil) %>
+            </div></div></div>
+            <% if !logged_in? %>
+              <div class="lb"><div class="rb"><div class="item">
+                    <%= link_to 'login', login_url %>
+              </div></div></div>
+              <div class="lb"><div class="rb"><div class="item">
+                    <%= link_to 'join', join_url %>
+              </div></div></div>
+            <% end %>
+            <% if logged_in? %>
+              <div class="lb"><div class="rb"><div class="item">
+                    <%= link_to 'logout', logout_url %>
+              </div></div></div>
+            <% end %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% if yield :left_col and yield :right_col %>
+        <div id="body" class="two-col">
+
+          <div class="left-col">
+            <% if flash[:notice] %>
+              <%= render :partial => "shared/notice", :locals => { :notice => flash[:notice] } %>
+            <% elsif flash[:error] %>
+              <% response.headers['Status'] = 404 %>
+              <%= render :partial => "shared/notice", :locals => { :error => flash[:error] } %>
+            <% end %>
+            <%= yield :left_col %>
+          </div>
+
+          <div class="right-col">
+            <%= yield :right_col %>
+          </div>
+
+          <div class="clear"></div>
+
+        </div>
+      <% elsif yield :left_col and !yield :right_col %>
+        <div id="body" class="one-col">
+
+          <div class="one-col">
+            <% if flash[:notice] %>
+              <%= render :partial => "shared/notice", :locals => { :notice => flash[:notice] } %>
+            <% elsif flash[:error] %>
+              <%= render :partial => "shared/notice", :locals => { :error => flash[:error] } %>
+            <% end %>
+            <%= yield :left_col %>
+          </div>
+
+        </div>
+      <% else %>
+        <div id="body" class="one-col">
+
+          <div class="one-col">
+            <% if flash[:notice] %>
+              <%= render :partial => "shared/notice", :locals => { :notice => flash[:notice] } %>
+            <% elsif flash[:error] %>
+              <%= render :partial => "shared/notice", :locals => { :error => flash[:error] } %>
+            <% end %>
+            <%= yield :layout %>
+          </div>
+
+        </div>
+      <% end %>
+
+      <div id="footer">
+        <div class="notices">
+          <p class="deem">
+            <a rel="license" title="Licence" href="http://creativecommons.org/licenses/by-sa/2.5/au/"><img alt="Blavel itself, and all content on Blavel, is licenced for use under a Creative Commons Attribution-Share Alike 2.5 licence" id="licence" src="/images/licence.png"/></a>
+            Got feedback, or need some help? Email us at <a href="mailto:feedback@blavel.com">feedback@blavel.com</a>.
+          </p>
+        </div>
+      </div>
+
+      <%= analytics_tag %>
+
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,47 @@
+<%
+  selected_message = convo
+
+  # Get the other party to the message from the sender or recipient,
+  # depending on which is the current user
+  convo_with = (selected_message.sender == current_user) ? selected_message.recipient : selected_message.sender
+
+  # Get all messages from current user to specified user
+  sent = Message.find_all_by_sender_id(current_user.id, :conditions => { :recipient_id => convo_with.id })
+
+  # Get all messages from specified user to current user
+  received = Message.find_all_by_sender_id(convo_with.id, :conditions => { :recipient_id => current_user.id })
+
+  # Add messages together and sort by reverse chronological order
+  messages = smush(sent, received).sort! { |x,y| y.created_at <=> x.created_at }
+%>
+<%= profile_pic_tag convo_with, 'tiny' %>
+<h2>between you</h2>
+<h2>and <%= convo_with.login %></h2>
+<div class="clear"></div>
+
+<% messages.each do |message| %>
+<div class="message" id="convo-<%= message.id %>">
+  <div class="info">
+    <div class="item">from <%= link_to message.sender.login, user_profile_url(:user_login => message.sender.login, :page => nil) %></div>
+    <div class="item">to <%= link_to message.recipient.login, user_profile_url(:user_login => message.recipient.login, :page => nil) %></div>
+  </div>
+  <div class="content">
+    <%= simple_format message.content %>
+  </div>
+  <% if message == selected_message || message == messages.first %>
+    <% if message.sender != current_user %>
+      <div class="actions">
+        <%= link_to "send #{message.sender.login} a private message",
+          new_message_url(:user_login => message.sender.login),
+          :class => 'item' %>
+      </div>
+    <% elsif message.recipient != current_user %>
+      <div class="actions">
+        <%= link_to "send #{message.recipient.login} a private message",
+          new_message_url(:user_login => message.recipient.login),
+          :class => 'item' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

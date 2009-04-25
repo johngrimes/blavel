@@ -1,0 +1,66 @@
+bay:
+  id: 2648975
+  name: Bay of Furrowend
+  ascii_name: Bay of Furrowend
+  latitude: 59.05
+  longitude: -2.9166667
+  location_type_code: H
+  feature_class: BAY
+  country_code: GB
+  alternate_iso_alpha_2:
+  admin_1_code: SCT
+  admin_2_code: V9
+  population: 0
+  gtopo30: 1
+  time_zone: Europe/London
+  modification_date: 2004-09-24
+
+windsor:
+  id: 2633842
+  name: Windsor
+  ascii_name: Windsor
+  alternate_names: New Windsor,Vindzor,Windlesora,Windlesōra,Windsor,Виндзор,ウィンザー
+  latitude: 51.4833333
+  longitude: -0.6
+  location_type_code: P
+  feature_class: PPL
+  country_code: GB
+  alternate_iso_alpha_2: GB
+  admin_1_code: ENG
+  admin_2_code: P4
+  population: 0
+  gtopo30: 29
+  time_zone: Europe/London
+  modification_date: 2007-06-16
+
+uk:
+  id: 2635167
+  name: United Kingdom of Great Britain and Northern Ireland
+  ascii_name: United Kingdom of Great Britain and Northern Ireland
+  alternate_names: An Riocht Aontaithe,An Rioghachd Aonaichte,An Rìoghachd Aonaichte,An Ríocht Aontaithe,Apvienota Karaliste,Apvienotā Karaliste,Birlesik Krallik,Birleşik Krallık,Boeyuek Britaniya,Bretland,Britain,Britania Raya,Britania e Madhe,Britanniarum Regnum,Böyük Britaniya,Det Forenede Kongerige,Det Forenede Kongerige Storbritannien og Nordirland,Det forente kongerike Storbritannia og Nord-Irland,Didzioji Britanija,Didžioji Britanija,Egyesuelt Kiralysag,Egyesült Királyság,England,Erresuma Batua,Geānlǣht Cynerīce,Grande Bretagne,Great Britain,Groot-Brittanje,Grootbritannien un Noordirland,Grossbritannien,Groussbritannien,Groussbritannien an Nordirland,Großbritannien,Grut-Brittanje,Hukllachasqa Qhapaq Suyu,Ing-guok,Inggris Raya,Ingiltere,Ingilterra,Ingɛlɛ́tɛlɛ,Iso-Britannia,Jungtine Karalyste,Jungtinė Karalystė,Kerajaan Inggris,Keyatiya Yekbuyi ya Britaniya Mezin u Irlanda,Keyatiya Yekbûyî ya Brîtaniya Mezin û Îrlanda,Kingitanga Kotahi,Kīngitanga Kotahi,Lielbritanija,Lielbritanijas un Ziemelirijas Apvienota Karaliste,Lielbritānija,Lielbritānijas un Ziemeļīrijas Apvienotā Karaliste,Marea Britanie,Mbreteria e Bashkuar,Mbretëria e Bashkuar,Nagkakaisang Kaharain,Obedineno kralstvo,Obedineno kralstvo Velikobritanija i Severna Irlandija,Obedinetoto Kralstvo,Pagarian ti Britania ken Umamianan nga Irlandia,Paratane,Paratāne,Phandlo Thagaripen la Bare Britaniyako thai le Nordutne Irlandesko,Pilitania,Pilitānia,Prydain Fawr,Qraliyeta Yekbuyi,Qraliyeta Yekbûyî,Reeriaght Unnaneyssit,Regatul Unit,Reginavel Uni da la Gronda Britannia ed Irlanda dal Nord,Reginavel Unì da la Gronda Britannia ed Irlanda dal Nord,Regn Uni,Regn Unì,Regne Unit,Regne Unit de la Gran Bretanya i Irlanda del Nord,Regno Unio,Regno Unite,Regno Unito,Regno Unïo,Regnu Unitu,Regnum Unitum,Reialme Unit,Reino Unido,Reino Unido - United Kingdom,Reino Unito,Reinu Naklibur,Reinu Uniu,Reinu Uníu,Reinu Xuniu,Reinu Xuníu,Renju Unit,Rouantelezh Unanet Breizh-Veur ha Norzhiwerzhon,Rouoyaume Unni,Royaume-Uni,Royomo-Uni,Royômo-Uni,Rywvaneth Unys,Spojene kralovstvi,Spojene kralovstvo,Spojené království,Spojené kráľovstvo,Spoluchene Korolіvstvo,Stora Bretland,Stora-Bretland,Storbritannia,Storbritannien,Stuorra-Britannia,Stuorra-Británnia,Styr Britani,Stóra Bretland,Stóra-Bretland,Suurbritannia,UEhendkuningriik,UK,Uingereza,Ujedinjena Kraljevina,Ujedinjeno Kraljevstvo,Unionita Rejio,United Kingdom,Unitit Kinrick,Unuiginta Reglando,Unuiĝinta Reĝlando,Velika Britanija,Velikobritanija,Velka Britanie,Velká Británie,Vereineg Keuninkriek,Vereinigtes Koenigreich,Vereinigtes Königreich,Verenigd Koninkrijk,Verenigde Koninkryk,Vjalіkaja Brytanіja,Vương quốc Anh,Vương quốc Liên hiệp Anh và Bắc Ireland,Wayom Ini,Wayòm Ini,Wielka Brytania,Wulkobritaniska,Y Deyrnas Unedig,Yhdistynyt kuningaskunta,Zdruzeno kraljestvo (V. Britanija in S. Irska),Zdruzeno kraljestvo Velike Britanije in Severne Irske,Združeno kraljestvo (V. Britanija in S. Irska),Združeno kraljestvo Velike Britanije in Severne Irske,Zjednoczone Krolestwo Wielkiej Brytanii,Zjednoczone Królestwo Wielkiej Brytanii,Ühendkuningriik,Ĭng-guók,İngiltere,Ηνωμένο Βασίλειο,Бирлашган Қироллик,Велика Британија,Велика Британія,Великобритания,Великобританія,Велікабрытанія,Вялікабрытанія,Вялікая Брытанія,Обединено кралство,Обединено кралство Великобритания и Северна Ирландия,Обединетото Кралство,Подшоҳии Муттаҳида,Сполучене Королівство,Стыр Британи,Уједињено Краљевство,Մեծ Բրիտանիա,Միավորված Թագավորություն,Միացյալ Թագավորություն,בריטאניע,בריטניה,הממלכה המאוחדת,المملكة المتحدة,انگلستان,برتانیه,برطانيه,برطانیہ,برىتانىيە,بریتانیا,پادشاهی متحد بریتانیای کبیر و ایرلند شمالی,پادشاهی متحده,ܡܠܟܘܬܐ ܚܕܝܬܐ,यूनाइटेड किंगडम,संयुक्त राजशाही,গ্রেটবৃটেন,যুক্তরাজ্য,ஐக்கிய இராச்சியம்,பிரிடிஷ் கூட்டரசு,బ్రిటన్,ബ്രിട്ടന്‍,สหราชอาณาจักร,ສະຫະລາດຊະອານາຈັກ,གྷ྄རེཊ྄་བྲཱི་ཊེན།,ཡུ་ནའི་ཊེཊ་ཀིང་ཌམ,გაერთიანებული სამეფო,დიდი ბრიტანეთი,እንግሊዝ,ዩናይትድ ኪንግደም,イギリス,英国,ꑱꇩ,영국
+  latitude: 54.0
+  longitude: -4.0
+  location_type_code: A
+  feature_class: PCLI
+  country_code: GB
+  alternate_iso_alpha_2:
+  admin_1_code: 00
+  admin_2_code: 00
+  population: 60943000
+  gtopo30: -9999
+  time_zone: Europe/London
+  modification_date: 2008-07-12
+
+no_country:
+  id: 2633849
+  name: Windsor
+  ascii_name: Windsor
+  alternate_names: New Windsor,Vindzor,Windlesora,Windlesōra,Windsor,Виндзор,ウィンザー
+  latitude: 51.4833333
+  longitude: -0.6
+  location_type_code: P
+  feature_class: PPL
+  population: 0
+  gtopo30: 29
+  time_zone: Europe/London
+  modification_date: 2007-06-16

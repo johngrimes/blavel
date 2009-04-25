@@ -1,0 +1,32 @@
+.info {
+    font-size: 11px;
+    margin-bottom: -18px;
+    padding: 0px 5px;
+    color: #666666;
+}
+
+.info .item {
+    display: inline;
+    padding: 5px 8px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin: 0px 2px;
+}
+
+.actions {
+    font-size: 11px;
+    margin: -17px 0px 15px;
+    padding: 0px 5px;
+    color: #666666;
+    text-align: right;
+}
+
+.actions .item {
+    display: inline;
+    padding: 5px 8px;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin: 0px 2px;
+}

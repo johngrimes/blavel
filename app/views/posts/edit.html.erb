@@ -1,0 +1,107 @@
+<% method = @new_post ? 'post' : 'put' %>
+
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag '/javascripts/yui/build/autocomplete/assets/skins/sam/autocomplete' %>
+  <%= stylesheet_link_tag 'info_bar',
+    'form',
+    'location_select',
+    'posts/new_edit_post',
+    :cache => 'cache/new_edit_post_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'tinymce/jscripts/tiny_mce/tiny_mce' %>
+  <%= javascript_include_tag 'yui/build/yahoo-dom-event/yahoo-dom-event',
+    'yui/build/animation/animation-min',
+    'yui/build/connection/connection-min',
+    'yui/build/autocomplete/autocomplete-min',
+    'shadowbox/adapter/shadowbox-jquery',
+    'shadowbox/shadowbox',
+    'form',
+    'rte',
+    'location_select',
+    'posts/new_edit_post',
+    :cache => 'cache/new_edit_post_all' %>
+<% end %>
+
+<h1>
+  <% if @new_post %>
+    new post<% @title = 'New post' %>
+  <% else %>
+    edit post<% @title = 'Edit post' %>
+  <% end %>
+</h1>
+
+<div class="tabs">
+  <div class="selected tab">edit words</div>
+  <% if !@post.pictures.empty? %>
+    <%= link_to 'edit pictures', edit_pictures_url(@post), :class => 'tab' %>
+  <% end %>
+  <%= link_to @post.pictures.empty? ? 'add pictures' : 'add more pictures', @new_post ? add_pictures_new_post_url(:new_post => true) : add_pictures_url(:post_id => @post.id), :class => 'tab' %>
+  <% if !@new_post %>
+    <%= link_to 'send to mailing list', show_mailing_list_url(:post_id => @post.id), :class => 'tab' %>
+  <% end %>
+</div>
+<div class="hr"></div>
+<% if !@new_post %>
+  <div class="actions">
+    <%= link_to 'view post', verbose_post_path(@post), :class => 'item' %>
+  </div>
+<% end %>
+
+<% form_for(@post, :url => @new_post ? create_post_url : update_post_url(:id => @post.id), :html => { :method => method }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <table class="field-container">
+      <tr>
+        <td><%= f.label :title %></td>
+        <td class="input"><%= f.text_field :title, :class => "text" %></td>
+      </tr>
+    </table>
+  </fieldset>
+  <fieldset id="editor" class="yui-skin-sam">
+    <%= f.text_area :content %>
+  </fieldset>
+  <fieldset>
+    <table id="location-layout">
+      <tbody><tr>
+          <td id="geotag-layout">
+            <table class="field-container">
+              <tr>
+                <td id="location-label"><label>Add&nbsp;a&nbsp;location</label></td>
+                <td id="location-ac-layout">
+                  <div class="yui-skin-sam">
+                    <div id="location-ac" class="yui-ac">
+                      <input id="location-input" name="location_name" class="yui-ac-input" type="text"/>
+                      <div id="location-container" class="yui-ac-container"></div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div id="geotags">
+              <%
+              @post.locations.each_index do |l|
+                concat "<div id=\"geotag#{@post.locations[l].id}\" class=\"geotag\">", binding
+                concat "#{display_location(@post.locations[l], true)}", binding
+                concat "<a onclick=\"removeGeotag(#{@post.locations[l].id});\">remove</a>", binding
+                concat "<div class=\"location-id\">#{@post.locations[l].id}</div>", binding
+                concat "<div class=\"latitude\">#{@post.locations[l].latitude}</div>", binding
+                concat "<div class=\"longitude\">#{@post.locations[l].longitude}</div></div>", binding
+              end
+            %>
+              <% for location in @post.locations %>
+                <%= hidden_field_tag "post[location_ids][]", location.id %>
+              <% end %>
+            </div>
+          </td>
+          <td id="map-layout">
+            <div id="map"></div>
+          </td>
+      </tr></tbody>
+    </table>
+    <div class="note">Can't find your location? Contribute to the GeoNames project at <%= link_to 'geonames.org', 'http://www.geonames.org/', :target => '_blank' %></div>
+  </fieldset>
+  <p>
+    <%= f.submit 'save!', :class => 'button' %>
+  </p>
+<% end %>

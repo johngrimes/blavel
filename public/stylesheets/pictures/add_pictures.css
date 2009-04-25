@@ -1,0 +1,86 @@
+form {
+    margin: 10px 0px 20px;
+    width: 400px;
+}
+
+form .alert {
+  margin-bottom: 20px;
+}
+
+#add-files-button {
+    width: 100px;
+}
+
+#clear-files-button {
+    width: 60px;
+    display: none;
+}
+
+#upload-button {
+    width: 77px;
+    display: none;
+}
+
+.tip {
+    width: 400px;
+}
+
+/* START Uploader control styles */
+
+#upload-container {
+    font-size: 14px;  
+    letter-spacing: 1px;
+}
+
+#file-progress-container {
+    margin-top: 5px;  
+    margin-bottom: 15px;
+}
+
+#upload-container .progress-text {
+    font-size: 13px;
+    padding-left: 5px;
+    position: relative;
+    top: -2px;
+}
+
+#upload-container .progress {
+    background: white url(/images/upload-progress.gif) no-repeat;
+    background-position: +50% 0;
+}
+
+#upload-list li {
+    background-color: #FFFFFF;
+    border: 1px solid #FFCC99;
+    font-size: 13px;
+    height: 40px;
+    margin: 5px 0px 0px;
+    padding: 10px;
+}
+
+#upload-list li .file-size {
+    float: right;
+    color: #666666;
+}
+
+#upload-list li .file-info {
+    display: block;
+    color: #666666;
+}
+
+#upload-list li .file-remove {
+    float: right;
+    line-height: 18px;
+    clear: right;
+    color: #666666;
+}
+
+#upload-list li a:hover {
+    background-color: #FFFFCC;
+}
+
+/* END Uploader control styles */
+
+#ugly, #goblin, #edit-path {
+    display: none;
+}

@@ -1,0 +1,54 @@
+<table class="picture-edit-row">
+<tbody><tr>
+<td class="thumb-container">
+  <%= image_tag get_picture_file_url(:id => edit_picture.id, :format => 'small'), :size => picture_size(edit_picture, 'small'), :alt => edit_picture.title %>
+</td>
+<td class="edit-container">
+  <table class="edit-field-container">
+  <tbody>
+  <tr>
+    <td>
+      <label class="title">Title:</label>
+    </td>
+    <td>
+      <input name="picture[<%= edit_picture.id %>][title]" class="title" type="text" value="<% if !edit_picture.title.nil? %><%= edit_picture.title %><% end %>" tabindex="<%= edit_picture.sequence * 3 - 2 %>" /><br />
+    </td>
+  </tr>
+  <tr><td colspan="2">
+      <label class="description">Description</label>
+      <textarea name="picture[<%= edit_picture.id %>][description]" class="description" rows="2" cols="2" tabindex="<%= edit_picture.sequence * 3 - 1 %>"><% if !edit_picture.description.nil? %><%= edit_picture.description %><% end %></textarea><br />
+  </td></tr>
+  <tr>
+    <td class="location-label-container"><label class="location">Location:</label></td>
+    <td class="location-input-container">
+      <div class="location-wrapper yui-skin-sam">
+        <div class="yui-ac">
+          <input name="picture[<%= edit_picture.id %>][location_input]" id="picture[<%= edit_picture.id %>][location_input]" class="yui-ac-input" type="text" value="<% if !edit_picture.location_id.nil? %><%= display_location(edit_picture.location, true) %><% end %>" tabindex="<%= edit_picture.sequence * 3 %>"/>
+          <div class="yui-ac-container" id="location-ac-container-<%= edit_picture.id %>"></div>
+        </div>
+      </div>
+      <input class="location-hidden-field" name="picture[<%= edit_picture.id %>][location]" id="picture[<%= edit_picture.id %>][location]" type="hidden" <% if !edit_picture.location_id.nil? %>value="<%= edit_picture.location_id %>"<% end %> />
+      <input class="sequence-hidden-field" name="picture[<%= edit_picture.id %>][sequence]" id="picture[<%= edit_picture.id %>][sequence]" type="hidden" value="<%= edit_picture.sequence %>" />
+             <div id="picture-<%= edit_picture.id %>-latitude"></div>
+      <div id="picture-<%= edit_picture.id %>-longitude"></div>
+    </td>
+  </tr></tbody>
+  </table>
+</td>
+<td class="map-container" <% if edit_picture.location %>style="display: table-cell"<% end %>  >
+    <%
+    post_locations = []
+    picture_locations = []
+    picture_locations.push edit_picture.location
+  %>
+    <div id="picture-<%= edit_picture.id %>-map">
+  <%= map_image_tag post_locations, picture_locations, 150, 150 %>
+  </div>
+</td>
+</tr></tbody>
+</table>
+<div class="picture-actions">
+  <a href="javascript:void(0);" onclick="moveUp(<%= edit_picture.id %>);return false;" class="item">move up</a>
+  <a href="javascript:void(0);" onclick="moveDown(<%= edit_picture.id %>);return false;" class="item">move down</a>
+  <%= link_to 'remove', destroy_picture_url(:id => edit_picture.id), :confirm => 'Are you sure you want to remove this picture?', :method => :delete, :class => 'item' %>
+</div>

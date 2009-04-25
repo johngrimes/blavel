@@ -1,0 +1,59 @@
+<% content_for (:styles) do %>
+  <%= stylesheet_link_tag 'form',
+    'users/new_user',
+    :cache => 'cache/new_user_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'form',
+    'users/new_user',
+    :cache => 'cache/new_user_all' %>
+<% end %>
+
+<% @title = 'Join' %>
+
+<h1>join!</h1>
+
+<% form_for :user, :url => create_user_url, :html => { :id => 'join-form', :onsubmit => 'return validateJoinForm();' } do |f| -%>
+  <p>Just fill out the form below to join and get your very own Blavel!</p>
+
+  <fieldset>
+    <label for="login">Username:</label><%= f.text_field :login %>
+    <div class="alert" id="alert-login-empty">Please enter a username.</div>
+    <div class="alert" id="alert-login-too-long">This username is too long. Please choose one that is less than 40 characters.</div>
+    <div class="alert" id="alert-login-bad-characters">Usernames can only be composed of letters, numbers and the underscore (_) character. Please remove any other characters from your username.</div>
+    <div class="alert" id="alert-login-reserved">Sorry, but the username you have chosen has already been taken. Please choose another one.</div>
+  </fieldset>
+
+  <fieldset>
+    <label for="password">Password:</label><%= f.password_field :password %>
+    <div class="alert" id="alert-password-empty">Please enter a password.</div>
+    <div class="alert" id="alert-password-too-short">This password is too short. Please choose one that is at least 8 characters.</div>
+    <div class="alert" id="alert-password-too-long">This password is too long. Please choose one that is less than 40 characters.</div>
+  </fieldset>
+
+  <fieldset>
+    <label for="password_confirmation">Confirm password:</label><%= f.password_field :password_confirmation %>
+    <div class="alert" id="alert-password-confirmation-empty">Please confirm your password by typing it again.</div>
+    <div class="alert" id="alert-password-confirmation-different">Your confirmation was different to your password. Please try again.</div>
+  </fieldset>
+
+  <fieldset>
+    <label for="email">Email address:</label><%= f.text_field :email %>
+    <div class="note">We won't share your email address with anybody else, for any reason.</div>
+    <div class="alert" id="alert-email-empty">Please enter an email address.</div>
+    <div class="alert" id="alert-email-too-long">This email address is too long. Please check it and make sure it is at most 100 characters.</div>
+    <div class="alert" id="alert-email-wrong-format">This email address does not seem to be in the right format. Please check it and try again.</div>
+  </fieldset>
+
+  <fieldset>
+    <label for="captcha">Prove that you are not a robot:</label>
+    <%= recaptcha_tags :display => { :theme => 'clean' } %>
+    <div class="note">
+      Type the two words in the picture, separated by a space.<br/>
+      If you can't read the words in the picture, press the refresh button beside the picture as many times as you need to.
+    </div>
+    <div class="alert" id="alert-captcha-empty">Please type the words that appear in the picture above.</div>
+  </fieldset>
+
+  <p><%= submit_tag 'finished!', :class => 'button' %></p>
+<% end -%>

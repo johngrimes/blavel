@@ -1,0 +1,78 @@
+table#title {
+    width: 100%;
+}
+
+#post-title {
+    text-align: right;
+    vertical-align: center;
+    color: #666666;
+    font-size: 13px;
+    padding-right: 10px;
+}
+
+img#picture {
+    border: 2px solid #cccccc;
+    vertical-align: middle;
+}
+
+#picture-map-layout {
+    width: 100%;
+    margin: 10px 0px 20px;
+}
+
+#picture-layout {
+    width: 1px;
+}
+
+#picture-layout a:hover {
+    background-color: transparent;
+}
+
+#picture-map-spacer {
+    width: 100%;
+}
+
+#map-layout {
+    text-align: right;
+    vertical-align: top;
+    width: 1px;
+}
+
+#map-layout img {
+    border: 2px solid #cccccc;
+}
+
+#description {
+    padding: 0px 0px 10px 10px;
+    font-style: italic;
+    width: 1px;
+    height: 5px;
+}
+
+.map {
+    vertical-align: middle;
+}
+
+#map-legend {
+    margin: 5px 0px 0px 2px;
+}
+
+#map-legend .legend-item {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 20px;
+    background: url(/images/picture_marker_sm.gif) top left no-repeat;
+    background-position: 0px 3px;
+}
+
+#note-form {
+    margin: 25px 0px 0px 0px;
+}
+
+#note-form textarea {
+    height: 100px;
+}
+
+#note-form fieldset {
+    padding-top: 0px;
+}

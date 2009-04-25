@@ -1,0 +1,46 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'form',
+    'sessions/new_session',
+    :cache => 'cache/new_session_all'  %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'form',
+    'sessions/new_session',
+    :cache => 'cache/new_session_all' %>
+<% end %>
+
+<% @title = 'Login' %>
+
+<h1>login!</h1>
+
+<% form_tag '/login', :id => 'login-form', :onsubmit => 'return validateLoginForm();' do %>
+  <p>
+    Please enter your Blavel username and password.
+  </p>
+  <fieldset>
+    <table class="field-container">
+      <tr>
+        <td><label for="username">Username</label></td>
+        <td class="input"><%= text_field_tag 'login', nil, :class => 'text', :id => 'username' %></td>
+      </tr>
+    </table>
+    <div class="alert" id="alert-user-name-empty">Please enter your username.</div>
+  </fieldset>
+  <fieldset>
+    <table class="field-container">
+      <tr>
+        <td><label for="password">Password</label></td>
+        <td class="input"><%= password_field_tag 'password', nil, :class => 'text', :id => 'password' %></td>
+      </tr>
+    </table>
+    <div class="alert" id="alert-password-empty">Please enter your password.</div>
+  </fieldset>
+  <fieldset>
+    <%= check_box_tag 'remember_me', '1', true %>
+    <label for="remember_me" id="remember-me-label">Remember me!</label>
+  </fieldset>
+  <p>
+    <%= submit_tag 'log me in!', :class => 'button' %>
+  </p>
+<% end -%>
+<p>Forgot your username or password?<br/>Email us at <%= link_to 'feedback@blavel.com', 'mailto:feedback@blavel.com' %>.</p>

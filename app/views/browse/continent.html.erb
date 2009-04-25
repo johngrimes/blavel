@@ -1,0 +1,43 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'posts/post_list', 
+    'pictures/thumb_grid', 
+    'browse/browse', 
+    :cache => 'cache/browse_all'  %>
+<% end %>
+
+<% @title = @continent.name %>
+<% @description = "Browse travel blogs and pictures from #{@continent.name}, posted by real travellers." %>
+
+<% content_for(:left_col) do %>
+  <div id="breadcrumb">
+    <%= link_to 'browse', :action => 'index' %>
+    >
+  </div>  
+  <h1><%= @continent.name %></h1>
+
+  <%
+  browse_links = ''
+  countries = @continent.countries.sort {|x,y| x.name <=> y.name }
+  countries.each do |c|
+    browse_links += '<span class="spacer">&#160;</span>' + link_to(c.name.gsub(/\s/, '&#160;'), 
+      browse_country_url(:continent_code => @continent.code, 
+        :continent_name => @continent.name.gsub(/\s/, '-').gsub(/\./, ''),
+        :country_code => c.id,
+        :country_name => c.name.gsub(/\s/, '-').gsub(/\./, '')), :class => 'browse-link') + ' '
+  end
+%>
+  <div id="browse-links"><%= browse_links %></div>
+
+  <h2>latest posts</h2>
+  <%= render :partial => "posts/post_summary", :collection => @posts %>
+  <% if @posts.empty? %>
+    <p>No one has posted about this continent yet!</p>
+  <% end %>
+  <%= paginate_links @posts %>
+<% end %>
+
+<% if !@pictures.empty? %>
+  <% content_for(:right_col) do %>
+    <%= render :partial => 'pictures/thumb_grid', :object => @pictures, :locals => { :row_size => 1 } %>
+  <% end %>
+<% end %>

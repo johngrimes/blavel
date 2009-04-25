@@ -1,0 +1,26 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'facebook/new_link' %>
+<% end %>
+
+<% content_for(:dashboard) do %>
+  <fb:dashboard/>
+<% end %>
+
+<% content_for(:page) do %>
+  <% unless flash[:error] %>
+    <p>Get started by linking your existing Blavel account to Facebook by entering your Blavel login details below.</p>
+    <p>Not already a user? <%= link_to 'Join', join_url %>, it's free and easy.</p>
+  <% end %>
+
+  <% form_tag $FACEBOOK_APP_BASE + '/link', :method => :post, :promptpermission => 'offline_access' do %>
+    <fieldset>
+      <label>Blavel username:</label><%= text_field_tag 'login', nil, :class => 'text' %>
+    </fieldset>
+    <fieldset>
+      <label>Blavel password:</label><%= password_field_tag 'password', nil, :class => 'text' %>
+    </fieldset>
+    <p>
+      <fb:submit><div id="submit">Link me up!</div></fb:submit>
+    </p>
+  <% end %>
+<% end %>

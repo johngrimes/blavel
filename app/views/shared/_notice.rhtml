@@ -1,0 +1,11 @@
+<% if notice %>
+  <div class="notice">
+    <a class="hide" href="#" onclick="$(this).parent().hide(); return false;">hide</a>            
+    <%= notice %>
+  </div>
+<% elsif error %>
+  <div class="error">
+    <a class="hide" href="#" onclick="$(this).parent().hide(); return false;">hide</a>            
+    <%= error %>
+  </div>
+<% end %>

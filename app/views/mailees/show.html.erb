@@ -1,0 +1,63 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'form',
+    'info_bar',
+    'posts/new_edit_post',
+    'mailees/mailing',
+    :cache => 'cache/mailing_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'form',
+    'mailees/mailing',
+    :cache => 'cache/mailing_all' %>
+<% end %>
+
+<% @title = 'Send to mailing list' %>
+
+<h1>send to mailing list</h1>
+
+<div class="tabs">
+  <%= link_to 'edit words', edit_post_url(:id => @post.id), :class => 'tab' %>
+  <% if !@post.pictures.empty? %>
+    <%= link_to 'edit pictures', edit_pictures_url(:post_id => @post.id), :class => 'tab' %>
+  <% end %>
+  <%= link_to @post.pictures.empty? ? 'add pictures' : 'add more pictures', add_pictures_url(:post_id => @post.id), :class => 'tab' %>
+  <div class="selected tab">send to mailing list</div>
+</div>
+<div class="hr"></div>
+<div class="actions">
+  <%= link_to 'view post', verbose_post_path(@post), :class => 'item' %>
+</div>
+
+
+<% form_tag(send_mailing_list_url(:post_id => @post.id), :method => :post, :id => 'send-form') do %>
+  <p><%= submit_tag 'send!', :class => 'button', :confirm => 'Please confirm that you would like to send an email to all selected email adresses on your mailing list.' %></p>
+  <fieldset>
+    <%= text_field_tag 'add-mailee', nil, :id => 'add-mailee-field' %><%= button_to_function 'add', 'addMailee();', :class => 'small-button' %>
+    <div class="alert" id="alert-mailee-exists">That email address is already on your mailing list.</div>
+    <div class="alert" id="alert-wrong-format">That does not look like an email address. Please check it.</div>
+    <div class="alert" id="alert-field-empty">Please type an email address in the box before clicking add.</div>
+  </fieldset>
+  <fieldset id="mailees">
+    <% if @mailees.length > 0 %>
+      <% if @mailees.length > 1 %>
+        <div id="select-all"><%= link_to_function 'select all', 'toggleSelectAll();' %></div>
+      <% end %>
+      <% @mailees.each do |m| %>
+        <div class="mailee"><%= check_box_tag 'to_send[]', m.id, true, :class => 'mailee-check-box' %><%= m.email %><%= link_to_function 'remove', "removeMailee(#{m.id});" %></div>
+      <% end %>
+      <%= hidden_field_tag 'post_id', @post.id %>
+    <% end %>
+  </fieldset>
+<% end %>
+<% form_tag(add_mailee_url(:user_login => @post.user.login), :method => :post, :id => 'add-form') do %>
+  <fieldset>
+    <%= hidden_field_tag 'add_mailee', nil %>
+    <%= hidden_field_tag 'post_id', @post.id %>
+  </fieldset>
+<% end %>
+<% form_tag(destroy_mailee_url(:user_login => @post.user.login), :method => :delete, :id => 'remove-form') do %>
+  <fieldset>
+    <%= hidden_field_tag 'remove_mailee', nil %>
+    <%= hidden_field_tag 'post_id', @post.id %>
+  </fieldset>
+<% end %>

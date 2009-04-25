@@ -1,0 +1,131 @@
+#title-layout {
+    width: 100%
+}
+
+#title h1 {
+    margin-bottom: 10px;
+    display: inline;
+}
+
+#for_who {
+    letter-spacing: 0px;
+}
+
+#feed-link {
+    text-align: right;
+    vertical-align: bottom;
+    padding-bottom: 4px;
+}
+
+#feed-link a {
+    text-decoration: none;
+}
+
+#feed-link a:hover {
+    background: transparent;
+    text-decoration: underline;
+}
+
+#feed-link img {
+    margin-bottom: -2px;
+}
+
+.feed-items {
+    margin-top: 26px;    
+    padding-top: 4px; /* IE Fix */
+}
+
+.feed-item {
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.feed-item .summary a:hover {
+    background-color: #ffffff;
+}
+
+.feed-item .info {
+    font-size: 11px;
+    margin-bottom: 2px;
+    padding: 0px 5px;
+    color: #666666;
+}
+
+.feed-item .info .item {
+    display: inline;
+    padding: 5px 8px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin: 0px 2px;
+}
+
+.feed-item .summary {
+    padding: 10px;
+}
+
+.feed-item .post {
+    border: 1px solid #cccccc;
+    background-color: #EBEAF6;
+}
+
+.feed-item .note {
+    border: 1px solid #ffcc99;
+    background-color: #ffffcc;
+}
+
+.feed-item .follow {
+    border: 1px solid #BECBAA;
+    background-color: #EFFCDA;
+}
+
+.followee, .follower {
+    margin-bottom: 20px;
+}
+
+.followee img, .follower img {
+    border: 2px solid #cccccc;
+    vertical-align: middle;
+}
+
+.followee a, .follower a {
+    text-decoration: none;
+}
+
+.followee .followee-name, .follower .follower-name {
+    line-height: 30px;
+}
+
+.followee .image-link, .follower .image-link {
+    margin-bottom: 5px;
+}
+
+.followee a:hover, .follower a:hover {
+    text-decoration: underline;
+}
+
+#followees .null-message {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+#followees {
+    margin-bottom: 20px;
+}
+
+#time-zone-alert {
+    border: 2px solid #FABB61;
+    margin: 0px 25px 15px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#time-zone-alert .button {
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+    margin-left: 5px;
+}

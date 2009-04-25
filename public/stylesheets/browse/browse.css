@@ -1,0 +1,34 @@
+#browse-links {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.browse-link {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    line-height: 2.7em;
+    font-size: 13px;
+}
+
+.map {
+    border: 2px solid #cccccc;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
+
+a.map-link:hover {
+    background-color: #ffffff;
+}
+
+#breadcrumb {
+    font-size: 13px;
+    margin: -5px 0px 5px -5px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.spacer { /* Opera Fix */
+    font-size: 1px;
+}

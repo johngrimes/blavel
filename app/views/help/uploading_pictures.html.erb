@@ -1,0 +1,59 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'help/help'  %>
+<% end %>
+
+<% @title = 'Help for uploading pictures' %>
+
+<% content_for :left_col do %>
+  <h1>uploading pictures: the smart way</h1>
+  <p>
+    Often when uploading pictures to blavel you will be using pictures straight
+    from your digital camera. These images can be very large, depending on how
+    many megapixels your digital camera is, and can take a long time to upload
+    over your internet connection.
+  </p>
+  <p>
+    The best way to reduce the time it takes to upload your digital camera
+    pictures is to resize them before you upload them. Resizing your pictures
+    using the instructions below will retain the same quality for the purposes
+    of displaying them on the internet.
+  </p>
+  <p>
+    The best way to resize your pictures in bulk is to download a free piece
+    of software called <%= link_to 'BIMP Lite', 'http://cerebralsynergy.com/request.php?52' %>.
+  </p>
+  <%= image_tag '/images/help/uploading_pictures/bimp.png' %>
+  <p>
+    The main BIMP window has a bunch of options - but the ones we are most
+    interested in are the Dimensions and the Output. Start by setting the
+    <b>Dimensions</b> to <b>Restrict Width and Height</b> and <b>1280x1024</b>. You can
+    resize your images smaller if you like, but this size is a good compromise to
+    a size that is still big enough to be used for desktop backgrounds.
+  </p>
+  <%= image_tag '/images/help/uploading_pictures/dimensions.png' %>
+  <p>
+    The <b>Output</b> section controls where our resized images are going to be saved.
+    It is not a good idea to save them in the same folder that your original images
+    are in, in case you get them mixed up. Often it is easiest to create a
+    temporary folder on your desktop.
+  </p>
+  <%= image_tag '/images/help/uploading_pictures/output.png' %>
+  <p>
+    Once you have your settings worked out, you shouldn't have to touch them again.
+    Resizing images in a folder is as easy as navigating to that folder in
+    the BIMP window, making sure all the pictures are ticked, and then clicking
+    <b>Start</b>.
+  </p>
+  <p>
+    Hope this helps you upload your pictures more easily! Happy Blavelling!
+    Any questions, send us an email at
+    <%= link_to 'feedback@blavel.com', 'mailto:feedback@blavel.com' %>.
+  </p>
+<% end %>
+<% content_for :right_col do %>
+  <h2>other help pages</h2>
+  <ul>
+    <li><%= link_to 'adding blavel to facebook', help_url(:action => 'facebook') %></li>
+    <li><%= link_to 'private messaging', help_url(:action => 'messaging') %></li>
+  </ul>
+<% end %>

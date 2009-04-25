@@ -1,0 +1,40 @@
+#page .yui-ac {
+    height: 20px;
+}
+
+#page .yui-ac-input {    
+    font-family: Trebuchet MS,Verdana,Arial,Helvetica,sans-serif;
+}
+
+#page .yui-ac .place-list-item {
+    width: 100%;
+    font-size: 12px;
+}
+
+#page .yui-ac .place-name {
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: top;
+    color: #000000;
+}
+
+#page .yui-ac .place-type {
+    padding-right: 5px;
+    text-align: right;
+    vertical-align: top;
+    color: #666666;
+}
+
+#page .yui-ac li.yui-ac-highlight { 
+    background: #FFFFCC;
+    color: #000000;
+}
+
+#page .yui-ac .ac-footer {
+    font-size: 11px;
+    font-style: italic;
+    color: #666666;
+    border-top: 1px solid #666666;
+    margin: 5px 10px;
+    padding-top: 5px;
+}

@@ -1,0 +1,19 @@
+uk:
+  code: GB
+  iso_alpha_3: GBR
+  iso_numeric: 826
+  fips_code: UK
+  name: United Kingdom
+  capital: London
+  area_in_sq_km: 244820
+  population: 60441457
+  continent_id: 1
+  tld: .uk
+  currency_code: GBP
+  currency_name: Pound
+  phone: 44
+  postal_code_format: @# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA
+  postal_code_regex: ^(([A-Z]\d{2}[A-Z]{2})|([A-Z]\d{3}[A-Z]{2})|([A-Z]{2}\d{2}[A-Z]{2})|([A-Z]{2}\d{3}[A-Z]{2})|([A-Z]\d[A-Z]\d[A-Z]{2})|([A-Z]{2}\d[A-Z]\d[A-Z]{2})|(GIR0AA))$
+  languages: en-GB,cy-GB,gd
+  location_id: 2635167
+  neighbours: IE

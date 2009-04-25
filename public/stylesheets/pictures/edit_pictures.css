@@ -1,0 +1,99 @@
+.subtabs {
+    margin-bottom: 30px;
+}
+
+.picture-edit-row {
+    border: 1px solid #FFCC99;
+    background-color: #FFFFCC;
+    margin: 0px 10px 0px 25px;
+    width: 860px;
+}
+
+.edit-container {
+    width: 100%;
+}
+
+.map-container {
+    display: none;
+    vertical-align: center;
+}
+
+.thumb-container, .edit-container, .map-container {
+    padding: 10px;
+}
+
+.thumb-container {
+    width: 204px;
+    text-align: center;
+}
+
+.thumb-container img, .map-container img {
+    border: 2px solid #CCCCCC;
+}
+
+.edit-field-container {
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+label.title {
+    margin-right: 10px;
+}
+
+input.title {
+    width: 100%;
+}
+
+label.description {
+    display: block;
+    margin: 10px 0px 5px;
+}
+
+.location-container {
+    margin-top: 10px;
+}
+
+.location-label-container {
+    width: 80px;
+}
+
+textarea.description {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.picture-edit-row .yui-ac, .picture-edit-row .yui-ac-input {
+    width: 100%;
+    height: 20px;
+}
+
+.picture-actions {
+    font-size: 11px;
+    padding: 0px 5px;
+    color: #666666;
+    text-align: right;
+    margin: 3px 10px 20px 0px;
+}
+
+.picture-actions .item {
+    display: inline;
+    padding: 5px 8px;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin: 0px 2px;
+}
+
+input.button {
+    font-size: 15px;
+    margin: 0px 0px 0px 25px;
+    height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0px 10px;
+}
+

@@ -1,0 +1,13 @@
+<% owner = post ? post.user : picture.post.user %>
+<% if logged_in? %>
+  <% form_tag post ? note_post_url(:post_id => post.id) : note_picture_url(:picture_id => picture.id), :method => :post, :id => 'note-form', :onsubmit => 'return validateNoteForm();' do %>
+    <fieldset>
+      <%= text_area_tag 'content', nil, :rows => 10, :cols => 10 %>
+      <div class="alert" id="alert-note-empty">You cannot leave an empty note.</div>
+      <%= submit_tag 'leave note!', :class => 'button' %>
+      <div class="leave-pm">or send <%= owner.login %> a <%= link_to 'private message', new_message_url(:user_login => owner.login), :class => 'item' %></div>
+    </fieldset>
+  <% end %>
+<% else %>
+  <p class="leave-note"><%= link_to 'Login', login_url %> or <%= link_to 'join', join_url %> to leave a note, or to send bandersnatch a private message.</p>
+<% end %>

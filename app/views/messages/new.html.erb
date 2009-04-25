@@ -1,0 +1,25 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'form',
+    'messages/new',
+    :cache => 'cache/new_message_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'messages/new' %>
+<% end %>
+
+<% @title = "New message to #{@recipient.login}" %>
+
+<h1>new private message</h1>
+<% form_for(@message,
+  :url => create_message_url,
+  :html => { :method => :post }) do |f| %>
+  <fieldset>
+    <strong>to</strong>&nbsp;&nbsp;<%= link_to @recipient.login, user_profile_url(:user_login => @recipient.login, :page => nil) %>&nbsp;&nbsp;
+    <strong>from</strong>&nbsp;&nbsp;<%= link_to current_user.login, user_profile_url(:user_login => current_user.login, :page => nil) %>
+    <%= f.text_area :content, :rows => 10 %>
+  </fieldset>
+  <p>
+    <%= f.hidden_field :recipient_id %>
+    <%= f.submit 'send!', :class => 'button' %>
+  </p>
+<% end %>

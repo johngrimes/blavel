@@ -1,0 +1,64 @@
+#profile-pic-layout {
+    width: 1px;
+    vertical-align: top;
+}
+
+#profile-pic-layout img {
+    border: 2px solid #cccccc;
+    margin-bottom: -4px;
+}
+
+#profile-info-layout {
+    vertical-align: top;
+    padding: 0px 0px 0px 20px;
+    margin-top: 10px;
+}
+
+#profile-info-box {
+    border: 1px solid #cccccc;
+    padding: 5px 15px 5px 10px;
+}
+
+#profile-info {
+    width: 100%;
+}
+
+#profile-info td {
+    vertical-align: top;
+    padding: 5px 0px 5px 0px;
+}
+
+#profile-info img {
+    border: 1px solid #cccccc;
+}
+
+#profile-info .label {
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+#profile-layout .actions {
+    margin: 3px 0px 10px 0px;
+}
+
+#page h2 {
+    margin-bottom: 25px;
+}
+
+#title-layout {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#follow {
+    text-align: right;
+    vertical-align: top;
+    padding-top: 10px;
+}
+
+#follow a {
+    border: 1px solid #ffcc99;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}

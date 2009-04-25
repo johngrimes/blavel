@@ -1,0 +1,33 @@
+#send-form {
+    width: 450px;
+}
+
+.mailee {
+    padding: 2px;
+}
+
+.mailee input {
+    margin-right: 10px;
+}
+
+.mailee a {
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+#add-mailee-field {
+    margin-right: 5px;
+    width: 359px;
+}
+
+#add-form, #remove-form {
+    display: none;
+}
+
+#select-all {
+    margin-bottom: 10px
+}
+
+#select-all a {
+    font-size: 13px;
+}

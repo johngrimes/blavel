@@ -1,0 +1,74 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'form', 
+    'info_bar', 
+    'posts/new_edit_post', 
+    'pictures/add_pictures', 
+    :cache => 'cache/add_pictures_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'form', 
+    'fancyupload/mootools-trunk', 
+    'fancyupload/swiff.uploader', 
+    'fancyupload/fx.progressbar', 
+    'fancyupload/fancyupload2', 
+    'pictures/add_pictures', 
+    :cache => 'cache/add_pictures_all' %>
+<% end %>
+
+<% @title = 'Add pictures' %>
+
+<h1>
+  <% if @post.pictures.empty? %>
+    add pictures!
+  <% else %>
+    add more pictures!
+  <% end %>
+</h1>
+
+<div class="tabs">
+  <%= link_to 'edit words', edit_post_url(:id => @post.id), :class => 'tab' %>
+  <% if !@post.pictures.empty? %>
+    <%= link_to 'edit pictures', edit_pictures_url(@post), :class => 'tab' %>
+  <% end %>
+  <div class="selected tab"><%= @post.pictures.empty? ? 'add pictures' : 'add more pictures' %></div>
+  <%= link_to 'send to mailing list', show_mailing_list_url(:post_id => @post.id), :class => 'tab' %>
+</div>
+<div class="hr"></div>
+<div class="actions">
+  <%= link_to 'view post', verbose_post_path(@post), :class => 'item' %>
+</div>
+
+<% form_tag create_picture_url(:post_id => @post.id), :method => :post, :multipart => true, :id => 'upload-pictures-form' do  %>
+ 
+  <p>
+    <input id="add-files-button" class="button" type="button" value="add files..."/>
+    <input id="clear-files-button" class="button" type="button" value="clear"/>
+    <input id="upload-button" class="button" type="button" value="upload!"/>
+  </p>
+
+  <fieldset id="upload-container">
+    <div class="alert" id="alert-no-flash">The blavel! picture uploader requires the Adobe Flash Player plugin version 9 or better. You can pick it up at <%= link_to 'get.adobe.com/flashplayer', 'http://get.adobe.com/flashplayer/', :target => '_blank' %>.</div>
+    <div id="overall-progress-container">
+      <strong class="overall-title">Overall progress</strong><br />
+      <img src="/images/upload-bar.gif" class="progress overall-progress" />
+    </div>
+    <div id="file-progress-container">
+      <strong class="current-title">File progress</strong><br />
+      <img src="/images/upload-bar.gif" class="progress current-progress" />
+    </div>
+    <div class="current-text"></div>
+    <div id="upload-list"></div>
+  </fieldset>
+
+<% end %>
+
+<p class="tip">
+  Uploading pictures straight off a digital camera? We have put together a 
+  <%= link_to 'tutorial', help_url(:action => 'uploading_pictures') %> 
+  on how to resize your pictures before you upload, which can 
+  often make your upload time as much as ten times faster.
+</p>
+
+<div id="ugly"><%= current_user.id %></div>
+<div id="goblin"><%= current_user.crypted_password %></div>
+<div id="edit-path"><%= edit_pictures_url(@post) %></div>

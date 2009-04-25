@@ -1,0 +1,43 @@
+<% content_for (:styles) do %>
+  <meta name="y_key" content="1a00ad95a4c8c215"/>
+  <%= stylesheet_link_tag 'promo/home' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'promo/home' %>
+<% end %>
+
+<% @title = 'Blavel! Travel blogs, stories from around the world!' %>
+<% @description = 'Join a free community of travellers sharing their travel blogs and pictures from all over the world.' %>
+
+<div id="page">
+  <div id="intro">A free and easy way to share your travel experiences with friends, family and the world!</div>
+  <table id="feature-show">
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag '/images/promo/geotagging.png', :alt => 'Location tagging!', :id => 'geotagging' %>
+          <h2>Location, location</h2>
+          Create a map of your travels by tagging your posts and pictures using over 6 million place names from around the world.
+        </td>
+        <td>
+          <%= image_tag '/images/promo/keep_in_touch.png', :alt => 'Mobile friendly!', :id => 'mobile' %>
+          <h2>Keep in touch</h2>
+          Cultivate a healthy amount of travel jealousy amongst your family and friends by setting up a mailing list for updates to your travel blog.
+        </td>
+        <td>
+          <%= image_tag '/images/promo/facebook.png', :alt => 'Link to Facebook!', :id => 'facebook' %>
+          <h2>Link to Facebook</h2>
+          Keep your Facebook friends up-to-date on your travels through automatic updates to your Facebook profile.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="join">
+    <%= link_to image_tag('/images/promo/join-button.png', :alt => 'Join!', :id => 'join-button'), join_url %>
+  </div>
+  <div id="login">
+    <%= link_to 'Already a part of the <span class="em">blavel!</span> tribe?<br/><span class="em">Login here.</span>', login_url %>
+  </div>
+
+  <%= analytics_tag  %>
+</div>

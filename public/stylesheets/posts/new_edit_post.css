@@ -1,0 +1,77 @@
+post_content {
+    width: 50px;
+}
+
+#geotags {
+    margin-top: 10px;
+}
+
+.geotag {
+    background: url(/images/post_marker_sm.gif) top left no-repeat;
+    background-position: 0px 3px;
+    padding-left: 20px;
+}
+
+.geotag a {
+    margin-left: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.geotag .location-id, .geotag .latitude, .geotag .longitude {
+    display: none;
+}
+
+#location-ac-layout {
+    width: 100%;
+}
+
+#location-label {
+    width: 120px;
+}
+
+.yui-ac {
+    width: 100%;
+    overflow: visible;
+}
+
+.tabs {
+    font-size: 11px;
+    margin-bottom: -18px;
+    padding: 0px 5px;
+    color: #000000;
+}
+
+.tabs .tab {
+    display: inline;
+    padding: 5px 8px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin: 0px 2px;
+}
+
+.tabs .selected {
+    background-color: #ffffcc;
+}
+
+#location-layout {
+    width: 100%;
+}
+
+#geotag-layout {
+    width: 100%;
+    vertical-align: top;
+}
+
+#map-layout {
+    padding-left: 20px;
+}
+
+#map-layout a:hover {
+    background: transparent;
+}
+
+#map-layout img {
+    border: 2px solid #cccccc;
+}

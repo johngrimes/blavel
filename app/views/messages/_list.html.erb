@@ -1,0 +1,41 @@
+<% messages = list %>
+<table>
+  <thead>
+    <tr>
+      <th class="from">from</th>
+      <th class="to">to</th>
+      <th class="message"></th>
+      <th class="when">when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !messages || messages.length == 0 %>
+      <tr><td colspan="4">You have not sent or received any messages yet.</td></tr>
+    <% else %>
+      <% messages.each do |message| %>
+        <tr class="message<%= (!message.read && message.recipient == current_user) ? ' unread' : '' %>" id="message-<%= message.id %>">
+          <td class="from">
+            <% if message.sender == current_user %>
+              you
+            <% else %>
+              <% form_tag message_convo_url(:id => message.id) do %>
+                <%= message.sender.login %>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="to">
+            <% if message.recipient == current_user %>
+              you
+            <% else %>
+              <% form_tag message_convo_url(:id => message.id) do %>
+                <%= message.recipient.login %>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="message"><%= truncate(message.content, 30) %></td>
+          <td class="when"><%= time_ago_in_words message.created_at %> ago</td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

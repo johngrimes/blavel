@@ -1,0 +1,122 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'info_bar',
+    'posts/post_list',
+    'users/show_user',
+    :cache => 'cache/show_user_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'shadowbox/adapter/shadowbox-jquery',
+    'shadowbox/shadowbox',
+    'users/show_user',
+    :cache => 'cache/show_user_all' %>
+<% end %>
+
+<% @title = "#{@user.login}'s blavel" %>
+<% @description = "Travel blogs and pictures posted by traveller #{@user.login}." %>
+
+<% content_for(:left_col) do %>
+  <table id="title-layout"><tbody><tr>
+        <td id="title">
+          <h1><%= @user.login %>'s blavel!</h1>
+        </td>
+        <td id="follow">
+          <% if logged_in? && current_user != @user %>
+            <% if current_user.followees.include? @user %>
+              <%= link_to "stop following #{@user.login}", unfollow_url(:user_login => @user.login), :method => :delete %>
+            <% else %>
+              <%= link_to "start following #{@user.login}", follow_url(:user_login => @user.login), :method => :post %>
+            <% end %>
+          <% end %>
+        </td>
+  </tr></tbody></table>
+
+  <table id="profile-layout"><tbody><tr>
+        <td id="profile-pic-layout">
+          <%= profile_pic_tag @user, 'display' %>
+          <div class="actions">
+            <% if (logged_in? and @user == current_user) or admin_logged_in? %>
+              <a rel="shadowbox;player=iframe;height=150;width=300" href="/<%= @user.login %>/picture/upload" class="item"><%= @user.profile_pictures.first ? 'change' : 'upload&nbsp;a&nbsp;pic' %></a>
+            <% end %>
+          </div>
+        </td>
+        <td id="profile-info-layout">
+          <div id="profile-info-box">
+            <% if user_full_name(@user).blank? && !@user.date_of_birth && @user.gender.blank? && @user.home_town.blank? && @user.about_me.blank? && @user.fave_travel_experience.blank? && @user.languages.blank? %>
+              No information has been added to this profile yet.
+            <% else %>
+              <table id="profile-info"><tbody>
+                  <% if !user_full_name(@user).blank? %>
+                    <tr>
+                      <td class="label">Full name:</td><td class="data"><%=h user_full_name(@user) %></td>
+                    </tr>
+                  <% end %>
+                  <% if @user.date_of_birth %>
+                    <tr>
+                      <td class="label">Age:</td><td class="data"><%= birth_date_to_age(@user.date_of_birth) %></td>
+                    </tr>
+                  <% end %>
+                  <% if !@user.gender.blank? %>
+                    <tr>
+                      <td class="label">Gender:</td><td class="data"><%= @user.gender.capitalize %></td>
+                    </tr>
+                  <% end %>
+                  <% if !@user.home_town.blank? %>
+                    <tr>
+                      <td class="label">Hometown:</td><td class="data"><%=h @user.home_town %></td>
+                    </tr>
+                  <% end %>
+                  <% if !@user.about_me.blank? %>
+                    <tr>
+                      <td class="label">About me:</td><td class="data"><%= simple_format @user.about_me %></td>
+                    </tr>
+                  <% end %>
+                  <% if !@user.fave_travel_experience.blank? %>
+                    <tr>
+                      <td class="label">Favourite travel experience:</td><td class="data"><%= simple_format @user.fave_travel_experience %></td>
+                    </tr>
+                  <% end %>
+                  <% if !@user.languages.blank? %>
+                    <tr>
+                      <td class="label">Languages spoken:</td><td class="data"><%=h @user.languages %></td>
+                    </tr>
+                  <% end %>
+                  <% if @user.followees.length > 0 %>
+                    <tr>
+                      <td class="label">Following:</td>
+                      <td class="data">
+                        <% @user.followees.each do |followee| %>
+                          <%= profile_pic_tag(followee, 'xtiny') %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  <% if @user.followers.length > 0 %>
+                    <tr>
+                      <td class="label">Followers:</td>
+                      <td class="data">
+                        <% @user.followers.each do |follower| %>
+                          <%= profile_pic_tag(follower, 'xtiny') %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+              </tbody></table>
+
+            <% end %>
+          </div>
+          <div class="actions">
+            <% if (logged_in? and @user == current_user) or admin_logged_in? %>
+              <a rel="shadowbox;player=iframe;height=560;width=430" href="/<%= @user.login %>/edit" class="item">edit</a>
+            <% end %>
+            <% if logged_in? and @user != current_user %>
+              <%= link_to "send #{@user.login} a private message", new_message_url(:user_login => @user.login), :class => 'item' %>
+            <% end %>
+          </div>
+        </td>
+  </tr></tbody></table>
+  <% if @posts and !@posts.empty? %>
+    <h2>my posts</h2>
+    <%= render :partial => "posts/post_summary", :collection => @posts %>
+    <%= paginate_links @posts %>
+  <% end %>
+<% end %>

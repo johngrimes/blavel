@@ -1,0 +1,37 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'info_bar', 
+    'pictures/thumb_grid', 
+    'pictures/show_post_pictures', 
+    :cache => 'cache/show_post_pictures_all'  %>
+<% end %>
+
+<% @title = 'View all pictures' %>
+<% 
+@description = "Pictures posted by traveller #{@post.user.login}"
+if @post.locations.length > 0
+  @description << " from #{display_location(@post.locations.first, true)}"
+end
+@description << '.'
+%>
+
+<h1>
+  <% if @post.title.blank? %>
+    untitled post<% @title = 'Untitled post' %>
+  <% else %>
+    <%=h @post.title %><% @title = @post.title %>
+  <% end %>
+</h1>
+
+<div class="hr"></div>
+<div class="actions">
+  <% if admin_logged_in? or (logged_in? and @post.user == current_user) %>
+    <%= link_to 'edit', edit_pictures_url(:post_id => @post.id), :class => 'item' %>
+  <% end %>
+  <% if !@post.content.blank? %>
+    <%= link_to 'view full post', verbose_post_path(@post), :class => 'item' %>
+  <% end %>
+</div>
+
+<%= render :partial => 'pictures/thumb_grid', :object => Picture.find(:all, :conditions => "post_id = #{@post.id}", :order => 'sequence'), :locals => { :row_size => 4 } %>
+
+<div class="hr"></div>

@@ -1,0 +1,38 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'messages/manage' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'jquery.scrollto' %>
+  <%= javascript_include_tag 'effects.core' %>
+  <%= javascript_include_tag 'effects.highlight' %>
+  <%= javascript_include_tag 'messages/manage' %>
+<% end %>
+
+<% @title = 'Messages' %>
+
+<h1>my private messages</h1>
+<div id="list">
+  <%= render :partial => 'messages/list', :object => @messages %>
+</div>
+<div id="convo">
+  <% if @messages.length == 0 %>
+    <div class="null-message">
+      <p>You can send somebody a private message by going to their user profile and clicking on the 'send a private message' link.</p>
+      <p>For more information, check out our<br/><%= link_to 'messaging help page', help_url(:action => 'messaging') %>.</p>
+    </div>
+  <% end %>
+  <% if @message %>
+    <%= render :partial => 'messages/convo.html.erb', :object => @message %>
+  <% end %>
+</div>
+<div class="clear"></div>
+
+<% if @message %>
+  <script type="text/javascript">
+  <!--
+    $(document).ready(function() {
+      $('#list #message-<%= @message.id %>').click();
+    });
+  //-->
+  </script>
+<% end %>

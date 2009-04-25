@@ -1,0 +1,12 @@
+#login-form {
+    width: 380px;
+    margin-bottom: 20px;
+}
+
+#remember_me {
+    margin: 0px 10px 2px 0px;
+}
+
+#remember-me-label {
+    font-weight: normal;
+}

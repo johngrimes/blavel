@@ -1,0 +1,25 @@
+<% owner = note.post ? note.post.user : note.picture.post.user %>
+<div class="note-info">
+  <div class="item">posted by <%= link_to note.user.login, user_profile_url(:user_login => note.user.login, :page => nil) %></div>
+  <div class="item"><%= pretty_date(note.created_at) %></div>
+</div>
+<div class="note">
+  <table><tbody><tr>
+        <td class="profile-pic-layout">
+          <%= profile_pic_tag note.user, 'tiny' %>
+        </td>
+        <td class="content-layout">
+          <%= simple_format note.content %>
+        </td>
+  </tr></tbody></table>
+</div>
+<% if logged_in? -%>
+  <div class="note-actions">
+    <% if note.user != current_user -%>
+      <%= link_to "send #{note.user.login} a private message", new_message_url(:user_login => note.user.login), :class => 'item' %>
+    <% end -%>
+    <% if admin_logged_in? or (current_user == note.user) or (current_user == owner) -%>
+      <%= link_to 'remove', destroy_note_url(:id => note.id), :confirm => 'Are you sure you want to remove this note?', :method => :delete, :class => 'item' %>
+    <% end -%>
+  </div>
+<% end -%>

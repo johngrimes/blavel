@@ -1,0 +1,18 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'users/user_grid' %>
+<% end %>
+
+<% 
+  who_is = (current_user == @user) ? 'you are' : "#{@user.login} is"
+
+  @title = "People that #{who_is} following" 
+  @description = "Summary of Blavel users that #{@user.login} is following."
+%>
+
+<h1>people that <%= who_is %> following</h1>
+
+<div class="hr"></div>
+<%= render :partial => 'users/user_grid', 
+      :object => @followees, 
+      :locals => { :row_size => 6 } %>
+<div class="hr"></div>

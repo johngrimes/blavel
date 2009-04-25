@@ -1,0 +1,17 @@
+set_utf_xml
+xml.instruct!
+xml.LocationSearchResults do
+  for location in @locations
+    xml.Location do
+      xml.Id location.id
+      xml.Name location.ascii_name
+      xml.Type location.type_description
+      xml.Latitude location.latitude
+      xml.Longitude location.longitude
+      if location.country
+        xml.CountryCode location.country.code
+        xml.CountryName location.country.name
+      end
+    end
+  end
+end

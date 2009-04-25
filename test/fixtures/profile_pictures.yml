@@ -1,0 +1,20 @@
+quentin:
+  id: 99999990
+  user_id: 1
+  filename: quentin.jpg
+  content_type: image/jpeg
+  size: 300000
+  width: 200
+  height: 100
+  created_at: 2008-03-26 11:20:31
+
+quentin_tiny:
+  id: 99999991
+  parent_id: 99999990
+  thumbnail: tiny
+  filename: quentin_tiny.jpg
+  content_type: image/jpeg
+  size: 300000
+  width: 50
+  height: 50
+  created_at: 2008-03-26 11:20:31

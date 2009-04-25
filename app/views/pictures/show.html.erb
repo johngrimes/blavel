@@ -1,0 +1,112 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'info_bar', 
+    'notes/note', 
+    'form', 
+    'pictures/show_picture', 
+    :cache => 'cache/show_picture_all'  %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'shadowbox/adapter/shadowbox-jquery', 
+    'shadowbox/shadowbox', 
+    'form', 
+    'notes/note', 
+    :cache => 'cache/show_picture_all' %>
+<% end %>
+
+<% 
+@description = ''  
+if @picture.location
+  @description << 'Location: ' + display_location(@picture.location, true) + '. '
+elsif @picture.post.locations.length > 0
+  location = post_location_summary(@picture.post, true)
+  location[0] = 'L'
+  @description << location + '. '
+end
+if !@picture.description.blank?
+  @description << truncate(@picture.description, 200)
+end
+%>
+
+<%
+total_post_pictures = @picture.post.pictures.length
+if @picture.sequence == 1
+  previous_sequence = total_post_pictures
+else
+  previous_sequence = @picture.sequence - 1
+end
+if @picture.sequence == total_post_pictures
+  next_sequence = 1
+else
+  next_sequence = @picture.sequence + 1
+end
+previous_picture = Picture.find(:first, :conditions => "post_id = #{@picture.post_id} and sequence = #{previous_sequence}")
+next_picture = Picture.find(:first, :conditions => "post_id = #{@picture.post_id} and sequence = #{next_sequence}")
+%>
+
+<table id="title"><tbody><tr>
+      <td id="picture-title">
+        <% if !@picture.title.blank? %>
+          <h1><%= @picture.title %><% @title = @picture.title %></h1>
+        <% else %>
+          <h1>untitled picture<% @title = 'Untitled picture' %></h1>
+        <% end %>
+      </td>
+      <td id="post-title">
+        <% if @picture.post.pictures.length > 1 %>
+          <%= post_link @picture.post, true %>
+        <% end %>
+      </td>
+</tr></tbody></table>
+
+<div class="info">
+  <div class="item">posted by <%= link_to @picture.post.user.login, user_profile_url(:user_login => @picture.post.user.login) %></div>
+  <div class="item"><%= pretty_date(@picture.created_at) %></div>
+</div>
+<div class="hr"></div>
+<div class="actions">
+  <% if admin_logged_in? or (logged_in? and @picture.post.user == current_user) %>
+    <%= link_to 'edit', edit_pictures_url(:post_id => @picture.post.id), :class => 'item' %>
+    <%= link_to 'remove', destroy_picture_url(:id => @picture.id), :confirm => 'Are you sure you want to remove this picture?', :method => :delete, :class => 'item' %>
+  <% end %>
+  <% if @picture.post.pictures.length > 1 %>
+    <%= link_to 'view all', show_all_pictures_url(:post_id => @picture.post.id), :class => 'item' %>
+    <%= link_to 'previous', show_picture_url(:id => previous_picture.id), :class => 'item' %>
+    <%= link_to 'next', show_picture_url(:id => next_picture.id), :class => 'item' %>
+  <% end %>
+</div>
+
+<table id="picture-map-layout">
+  <tbody>
+    <tr>
+      <td id="description">
+        <%= @picture.description %>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td id="picture-layout">
+        <%= link_to image_tag(get_picture_file_url(:id => @picture.id, :format => 'display'), :alt => @picture.title, :size => picture_size(@picture, 'display'), :alt => @picture.title, :id => 'picture'), get_picture_file_url(:id => @picture.id, :format => 'original') %>
+      </td>
+      <td id="picture-map-spacer"></td>
+      <td id="map-layout">
+        <% if @picture.location %>  
+          <%
+          post_locations = []
+          picture_locations = []
+          picture_locations.push @picture.location
+        %>
+          <%= map_image_tag post_locations, picture_locations, 200, 200 %>
+          <% if @picture.location %>
+            <div id="map-legend">
+              <div class="legend-item"><%= display_location(@picture.location) %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= render :partial => 'notes/note', :collection => @picture.notes %>
+<%= render :partial => 'notes/add', :object => @picture, :locals => { :post => false, :picture => @picture } %>

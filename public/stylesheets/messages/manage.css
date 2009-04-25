@@ -1,0 +1,118 @@
+#list {
+  width: 460px;
+  float: left;
+}
+
+#convo {
+  float: left;
+  width: 390px;
+}
+
+#list {
+  font-size: 13px;
+  padding-right: 40px;
+}
+
+#list table {
+  width: 100%;
+}
+
+#list tr.message {
+  cursor: pointer;
+}
+
+#list tr.highlighted {
+  background-color: #ffffcc;
+}
+
+#list tr.unread {
+  font-weight: bold;
+}
+
+#list th {
+  border-bottom: 1px solid #cccccc;
+  font-weight: bold;
+}
+
+#list td.from, #list td.to, #list td.message {
+  border-right: 1px solid #cccccc;
+}
+
+#list th, #list td {
+  padding: 5px 8px;
+  vertical-align: top;
+}
+
+#convo {
+  margin-top: -50px;
+}
+
+#convo img {
+  float: right;
+  border: 2px solid #cccccc;
+}
+
+#convo #convo-loading {
+  border: 0px;
+}
+
+#convo h2 {
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+
+#convo .content {
+  border: 1px solid #cccccc;
+  background-color: #ffffcc;
+  padding: 8px;
+}
+
+#convo .content h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.message .info {
+  font-size: 11px;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  padding: 0px 5px;
+  color: #666666;
+}
+
+.message .info .item {
+  display: inline;
+  padding: 5px 8px;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  margin: 0px 2px;
+}
+
+.message .actions {
+  font-size: 11px;
+  margin: 2px 0px 0px;
+  padding: 0px 5px 16px;
+  color: #666666;
+  text-align: right;
+}
+
+.message .actions .item {
+  display: inline;
+  padding: 5px 8px;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  margin: 0px 2px;
+}
+
+.null-message {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 20px;
+  width: 200px;
+  text-align: center;
+  float: right;
+}

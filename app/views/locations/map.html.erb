@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Blavel! Location Map</title>
+    <%= javascript_include_tag 'jquery' %>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= $GOOGLE_MAPS_API_KEY %>" type="text/javascript"></script>
+    <%= javascript_include_tag "maps/pdmarker-min" %>
+    <style type="text/css">
+      html { overflow: hidden; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        background-color: #222;
+        font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #666666;
+      }
+      #loading {
+        margin: 20px;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }			
+      #map-wrapper {
+        position: relative;
+        height: 100%;
+      } 
+      .location {
+        color: #666666;
+      }
+      .title {
+        color: #333333;
+        font-weight: bold;
+        font-size: 13px;
+      }
+      .authorLine, .locationLine {
+        color: #666666;
+        margin-left: 5px;
+      }
+      a {
+        color: #000000;
+        text-decoration: underline;
+      }			
+      a:hover {
+        background-color: transparent;
+      }
+    </style>
+    <script type="text/javascript">
+      //<![CDATA[
+      $(document).ready( function() {
+        
+        if (GBrowserIsCompatible()) {
+                                
+          var map = new GMap2(document.getElementById('map'));
+          
+          map.setCenter(new GLatLng(27.1748943329, 78.0420761108), 2);
+          map.setMapType(G_HYBRID_MAP);
+                                        
+          map.addControl(new GLargeMapControl());
+          map.addControl(new GScaleControl());
+          map.enableScrollWheelZoom();
+          
+          pictureIcon = new GIcon(G_DEFAULT_ICON, '/images/picture_marker.png');
+
+<% @post_locations.each do |l| %>
+        marker_<%= l.id %> = new PdMarker(new GLatLng(<%= l.latitude %>, <%= l.longitude %>), {title: '<%= display_location(l, true) %>'});
+        map.addOverlay(marker_<%= l.id %>);
+<% end %>
+<% @picture_locations.each do |l| %>
+        marker_<%= l.id %> = new PdMarker(new GLatLng(<%= l.latitude %>, <%= l.longitude %>), {icon: pictureIcon, title: '<%= display_location(l, true) %>'});
+        map.addOverlay(marker_<%= l.id %>);
+<% end %>
+          
+      map.zoomToMarkers(10);
+<% if @post_locations.length + @picture_locations.length == 1 %>
+        map.setZoom(12);
+<% end %>
+          
+    }
+        
+  });
+  //]]>	
+    </script>
+  </head>
+  
+  <body onunload="GUnload()">
+    <div id="map-wrapper">
+      <div id="map">
+        <div id="loading">Loading...</div>
+      </div>				
+    </div>
+  </body>
+  
+</html>

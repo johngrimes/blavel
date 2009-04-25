@@ -1,0 +1,11 @@
+Hi <%= @note_recipient.login %>,
+
+Just letting you know that <%= @note.user.login %> has left a note on your <%= @noted_item.class == Post ? 'post' : 'picture' %><%= @noted_item.title.blank? ? '' : " '#{@noted_item.title}'" %>.
+
+---
+
+<%= @note.content %>
+
+---
+
+Check it out: <%= @url %>

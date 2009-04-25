@@ -1,0 +1,80 @@
+<%
+if !@posts
+  @posts = []
+end
+%>
+<fb:fbml version="1.1">
+  <style type="text/css">
+    <!--
+    .post-summary {
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #F7F7F7;
+      border-top: 1px solid #CCCCCC;
+      border-bottom: 1px solid #CCCCCC;
+    }
+    
+    .post-summary img {
+      border: 2px solid #cccccc;
+      margin: 0px 5px;
+    }
+    
+    .post-summary .summary a:hover {
+      background-color: #ffffff;
+    }
+    
+    .post-summary .title {
+      font-weight: bold;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    
+    .post-summary .pictures-only-title .title {
+      font-weight: bold;
+      font-size: 12px;
+      margin: 0px;
+    }
+    
+    .post-summary .location {
+      color: #666666;
+      margin: -3px 0px 5px;
+    }
+    
+    .post-summary table.summary-layout {
+      width: 100%;
+    }
+    
+    .post-summary .words {
+      padding-right: 10px;
+      vertical-align: top;
+      margin-left: 5px;
+    }
+    
+    .post-summary .pictures {
+      width: 100px;
+      vertical-align: center;
+    }
+    
+    .post-summary .more-link {
+      font-size: 11px;
+      line-height: 1.9em;
+    }
+    
+    .blavel-logo {
+      float: right;
+      margin-left: 5px;
+    }
+    -->
+  </style>
+  
+  <%= render :partial => "facebook/post_summary", :collection => @posts, :locals => { :max_pictures => 3 } %>
+  <%= link_to image_tag('/images/logo-sm-whitebg.png', :class => 'blavel-logo'), base_url(:canvas => false, :host => $DEFAULT_HOST) %>
+  <% if @posts.empty? %>
+    <p><fb:name uid="<%= @facebook_user %>" firstnameonly="true" capitalize="true" useyou="false"/> hasn't got any travel stories to share with you yet.</p>
+    <p><fb:pronoun uid="<%= @facebook_user %>" capitalize="true" useyou="false"/> is most likely slack, or never leaves the house.</p>
+    <p>You can <%= link_to 'join Blavel', join_url(:canvas => false, :host => $DEFAULT_HOST) %> and post some travel stories of your own.</p>
+  <% else %>
+    <p><fb:name uid="<%= @facebook_user %>" firstnameonly="true" capitalize="true" useyou="false"/> goes by the name of <%= link_to @blavel_user.login, user_profile_url(:user_login => @blavel_user.login, :canvas => false, :host => $DEFAULT_HOST) %> on Blavel.</p>
+    <p>Haven't got your own Blavel? <%= link_to 'Click here', join_url(:canvas => false, :host => $DEFAULT_HOST) %>.</p>
+  <% end %>
+</fb:fbml>

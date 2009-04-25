@@ -1,0 +1,113 @@
+form {
+    padding: 0px;
+    border: 1px solid #FFCC99;
+    background-color: #FFFFCC;
+    display: block;
+    margin-left: 25px;
+    margin-right: 10px;
+    letter-spacing: 0px;
+}
+
+form fieldset {
+    padding: 10px 20px 10px 20px;
+    background-color: #FFFFCC;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+form fieldset a:hover {
+    background-color: #FFFFFF;
+}
+
+form p {
+    padding: 10px 20px 10px 20px;
+    background-color: #FFFFFF;
+}
+
+form table.field-container {
+    width: 100%;	
+}
+
+form td.input {
+    width: 100%;	
+}
+
+form td.input input {
+    width: 100%;
+}
+
+form label {
+    display: inline;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+form .alert {
+    background: url(/images/alert.gif) top left no-repeat;
+    background-position: 0px 3px;
+    padding-left: 25px;
+    margin-top: 5px;
+    display: none;
+}
+
+form .note {
+    margin-top: 5px;
+    font-size: 13px;
+    font-style: italic;
+}
+
+form input.text {
+    height: 20px;
+}
+
+textarea {
+    font-family: Trebuchet MS,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1.4em;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+
+form input.button {
+    font-size: 15px;
+    margin-top: 0px;
+    height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0px 10px;
+    width: 0; /* IE Fix */
+    overflow: visible; /* IE Fix */
+}
+
+form input.button[class] {  /* IE Fix */
+    width: auto;
+}
+
+form input.small-button {
+    font-size: 11px;
+    margin-top: 0px;
+    height: 25px;
+    cursor: pointer;
+    padding: 0px 4px;
+    font-weight: bold;
+}
+
+form .errorExplanation {
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+form .errorExplanation h2 {
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+form .errorExplanation p {
+    padding: 10px;
+}
+
+form .errorExplanation ul li {
+    list-style-type: disc;
+    margin-left: 30px;
+}

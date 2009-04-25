@@ -1,0 +1,31 @@
+set_utf_rss
+xml.instruct!
+xml.rss :version => '2.0', 'xmlns:atom' => 'http://www.w3.org/2005/Atom', 'xmlns:georss' => 'http://www.georss.org/georss' do
+  xml.channel do
+    xml.title "blavel! feed for #{@user.login}"
+    xml.link user_rss_feed_url(:user_login => @user.login)
+    xml.atom :link, :href => user_rss_feed_url(:user_login => @user.login), :rel => 'self', :type => 'application/rss+xml'
+    xml.description 'Updates from the website that brings you travel blogs and pictures posted by real people travelling in destinations all over the world.'
+    @feed_items.each do |feed_item|
+      xml.item do
+        if feed_item.class == Note      
+          xml.title "note left by #{feed_item.user.login}"
+          xml.link feed_item.post.blank? ? show_picture_url(:id => feed_item.picture.id) : verbose_post_path(feed_item.post, true)
+          xml.pubDate rfc822_date(feed_item.created_at.utc)
+          xml.description note_feed_summary(feed_item, true)
+        elsif feed_item.class == Post
+          xml.title "#{feed_item.user.login} made a post"
+          xml.link verbose_post_path(feed_item, true)
+          xml.pubDate rfc822_date(feed_item.created_at.utc)
+          xml.description post_feed_summary(feed_item, true)
+        elsif feed_item.class == Follow
+          follow_feed_summary = follow_feed_summary(feed_item)
+          xml.title sanitized(follow_feed_summary, true)[0..-2]
+          xml.link base_url(:host => $DEFAULT_HOST)
+          xml.pubDate rfc822_date(feed_item.created_at.utc)
+          xml.description follow_feed_summary(feed_item, true)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+Hi <%= @followee.login %>,
+
+Just letting you know that <%= @follower.login %> has started following you on Blavel!
+
+<% if @followee.followers.length > 1 -%>
+You now have <%= @followee.followers.length %> followers eagerly awaiting the next post about your travels.
+<% end -%>
+
+You can see <%= @follower.login %>'s profile here:
+<%= @follower_profile_url %>
+
+<% if @followee.followees.include? @follower %>
+You are already following <%= @follower.login %>.
+<% else %>
+You can start following <%= @follower.login %> by clicking on the 'start following' link.
+<% end %>
+
+Love from Blavel

@@ -1,0 +1,15 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'facebook/index', 
+    'facebook/post_list', 
+    :cache => 'cache/facebook_index_all' %>
+<% end %>
+
+<% content_for(:dashboard) do %>
+  <fb:dashboard>
+    <fb:create-button href="<%= new_post_url %>">Post a new entry</fb:create-button>
+  </fb:dashboard>
+<% end %>
+
+<% content_for(:page) do %>
+  <%= render :partial => "facebook/post_summary", :collection => @posts, :locals => { :max_pictures => 5 } %>
+<% end %>

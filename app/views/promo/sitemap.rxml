@@ -1,0 +1,57 @@
+set_utf_xml
+xml.instruct!
+xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9",
+  'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+  'xsi:schemaLocation' => "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" do
+  @posts.each do |post|
+    xml.url do
+      xml.loc verbose_post_path(post)
+      xml.lastmod post.updated_at.blank? ? w3c_date(post.created_at.utc) : w3c_date(post.updated_at.utc)
+      xml.priority '0.7'
+    end
+  end
+  @pictures.each do |picture|
+    xml.url do
+      xml.loc show_picture_url(:id => picture.id)
+      xml.lastmod picture.updated_at.blank? ? w3c_date(picture.created_at.utc) : w3c_date(picture.updated_at.utc)
+      xml.priority '0.6'
+    end
+  end
+  @users.each do |user|
+    xml.url do
+      xml.loc user_profile_url(user.login)
+      xml.priority '0.5'
+    end
+    xml.url do
+      xml.loc user_rss_feed_url(user.login)
+      xml.priority '0.5'
+    end
+  end
+  @active_continents.each do |continent|
+    xml.url do
+      xml.loc browse_continent_url(:continent_code => continent.code, 
+        :continent_name => continent.name.gsub(/\s/, '-'))
+      xml.priority '0.5'
+    end
+  end
+  @active_countries.each do |country|
+    xml.url do
+      xml.loc browse_country_url(:continent_code => country.continent.code, 
+        :continent_name => country.continent.name.gsub(/\s/, '-'),
+        :country_code => country.id,
+        :country_name => country.name.gsub(/\s/, '-'))
+      xml.priority '0.5'
+    end
+  end
+  @active_locations.each do |location|
+    xml.url do
+      xml.loc browse_location_url(:continent_code => location.country.continent.code, 
+        :continent_name => location.country.continent.name.gsub(/\s/, '-'), 
+        :country_code => location.country.code, 
+        :country_name => location.country.name.gsub(/\s/, '-'), 
+        :location_id => location.id, 
+        :location_name => location.name.gsub(/\s/, '-'))
+      xml.priority '0.5'
+    end
+  end
+end

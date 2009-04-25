@@ -1,0 +1,52 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'help/help'  %>
+<% end %>
+
+<% @title = 'Help with private messaging' %>
+
+<% content_for :left_col do %>
+  <h1>private messaging</h1>
+  <p>
+    Messages in Blavel are a way to have a conversation with another member
+    without it being visible to everybody. A private message can not be viewed
+    by anybody other than the person who sent it and the recipient.
+  </p>
+  <p>
+    Clicking on the messages tab from any page in Blavel will take you to the
+    'my private messages' page. This page shows you a list of all messages
+    sent by you to other members, as well as all messages received by you.
+  </p>
+  <p>
+    Whenever you see a number in your messages tab, it means that you have new
+    unread messages.
+  </p>
+  <%= image_tag '/images/help/messaging/tab.png' %>
+  <p>
+    When you click on a message, that message will be displayed alongside all
+    other messages that have been sent between you and that person, allowing you
+    to keep track of the conversation.
+  </p>
+  <%= image_tag '/images/help/messaging/convo.png' %>
+  <p>
+    You can reply to a message by clicking on the 'send X a private message'
+    link. This will take you to a page where you can compose your message.
+  </p>
+  <p>
+    You can send a new message to a person by clicking on the 'send X a private message'
+    link on their profile page, or by clicking on the private message link
+    after the notes on one of their posts.
+  </p>
+  <%= image_tag '/images/help/messaging/profile.png' %>
+  <%= image_tag '/images/help/messaging/note.png' %>
+  <p>
+    Happy Blavelling! Any problems or suggestions, send us an email at
+    <%= link_to 'feedback@blavel.com', 'mailto:feedback@blavel.com' %>.
+  </p>
+<% end %>
+<% content_for :right_col do %>
+  <h2>other help pages</h2>
+  <ul>
+    <li><%= link_to 'uploading pictures:<br/>the smart way', help_url(:action => 'uploading_pictures') %></li>
+    <li><%= link_to 'adding blavel to facebook', help_url(:action => 'facebook') %></li>
+  </ul>
+<% end %>

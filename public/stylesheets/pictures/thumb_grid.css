@@ -1,0 +1,18 @@
+.thumb-grid {
+    width: 100%;
+}
+
+.thumb-grid td {
+    padding: 5px 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.thumb-grid img {
+    border: 2px solid #cccccc;
+    vertical-align: middle;
+}
+
+.thumb-grid a:hover {
+    background-color: transparent;
+}

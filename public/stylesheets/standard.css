@@ -1,0 +1,221 @@
+html, body {
+    background-color: #ffffcc;
+}
+
+#page {
+    margin: auto;
+    width: 974px;
+    min-width: 974px;
+    text-align: left;
+}
+
+h1, h2, h3 {
+    line-height: 1.231;
+}
+
+h1 {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h2 {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+h3 {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.right-col h3 {
+    text-align: center;
+}
+
+a:hover {
+    background-color: #FFFFCC;
+}
+
+a.image-link:hover {
+    background-color: transparent;
+}
+
+.notice, .error {
+    border: 2px solid #99CC66;
+    margin: 0px 25px 15px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.error {
+    border: 2px solid #FF9999;
+}
+
+.notice .hide, .error .hide {
+    float: right;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+/* START MASTHEAD STYLES */
+
+#masthead {
+    background: transparent url(/images/page-top.png) no-repeat scroll left top;
+    height: 136px;
+    overflow: hidden; /* IE6 fix */
+}
+
+#masthead #logo {
+    position: relative;
+    top: 23px;
+    left: 37px;
+    width: 210px;
+    height: 80px;
+    overflow: hidden; /* IE6 fix */
+}
+
+#masthead #slogan {
+    position: relative;
+    color: #ffffcc;
+    font-size: 13px;
+    top: 10px;
+    left: 55px;
+    width: 400px;
+    height: 22px;
+}
+
+#masthead .nav {
+    float: right;
+    position: relative;
+    top: -25px;
+    right: 26px;
+}
+
+#masthead .nav .lb {
+    float: left;
+    margin-left: 5px;
+    background: url(/images/tab-end.png) left top no-repeat;
+    padding-left: 10px;
+}
+
+#masthead .nav .rb {
+    float: left; /* IE6 fix */
+    background: url(/images/tab-end.png) right top no-repeat;
+    padding-right: 10px;
+}
+
+#masthead .nav .item {
+    float: left; /* IE6 fix */
+    background: url(/images/tab.png) left top repeat-x;
+    height: 38px;
+    padding: 0px 5px 0px 5px;
+    line-height: 38px;
+}
+
+#masthead a {
+    text-decoration: none;
+}
+
+#masthead a:hover {
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+/* END MASTHEAD STYLES */
+
+/* START ADSPACE STYLES */
+
+.ad-space {
+    background: transparent url(/images/page.png) repeat-y scroll left top;
+    height: 105px;
+}
+
+.ad-space iframe {
+    display: block;
+}
+
+#header .ad-space {
+    padding: 0px 40px 5px;
+}
+
+#footer .ad-space {
+    padding: 20px 40px 0px;
+}
+
+/* END ADSPACE STYLES */
+
+/* START BODY STYLES */
+
+#body, #body.one-col {
+    background: transparent url(/images/page.png) repeat-y scroll left top;
+}
+
+#body.two-col {
+    background: transparent url(/images/page-col.png) repeat-y scroll left top;
+    line-height: 0px;
+}
+
+#body .left-col, #body .right-col {
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+#body .left-col {
+    float: left;
+    width: 634px;				/* [left-col width] + [right-col width] = 854 */
+    padding: 0px 20px 0px 40px;
+    line-height: 1.4em;
+}
+
+#body .right-col {
+    float: left;
+    margin-right: -280px;		/* = [right-col width] + 60 * -1 */
+    width: 220px;				/* [left-col width] + [right-col width] = 854 */
+    padding: 0px 40px 0px 20px;
+    text-align: center;
+    line-height: 1.4em;
+}
+
+#body .one-col {
+    padding: 10px 40px;
+}
+
+#body p {
+    padding-bottom: 8px;
+}
+
+/* END BODY STYLES */
+
+/* START FOOTER STYLES */
+
+#footer .notices {
+    background: transparent url(/images/page-bottom.png) no-repeat scroll left bottom;
+    padding: 20px 40px 40px;
+}
+
+#footer p {
+    margin-bottom: 10px;
+}
+
+#footer p.deem {
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+#footer p.deem a {
+    font-size: 12px;
+}
+
+#footer #licence {
+  border-width: 0px;
+  margin: 0px 10px -3px 0px;
+}
+
+/* END FOOTER STYLES */

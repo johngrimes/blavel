@@ -1,0 +1,49 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'help/help'  %>
+<% end %>
+
+<% @title = 'Help for adding Blavel to Facebook' %>
+
+<% content_for :left_col do %>
+  <h1>adding blavel to facebook</h1>
+  <p>
+    You can add the My Blavel application to your Facebook by visiting the
+    following url: <%= link_to $FACEBOOK_APP_BASE, $FACEBOOK_APP_BASE %>
+  </p>
+  <p>
+    The first thing you will have to do is enter your Blavel login details in
+    order to link your Blavel account to your Facebook account.
+  </p>
+  <%= image_tag '/images/help/facebook/link.png' %>
+  <p>
+    You will then be asked to authorise the My Blavel application for offline
+    access. This will enable the posting of news feed items when you make new
+    posts on Blavel.
+  </p>
+  <%= image_tag '/images/help/facebook/allow_access.png' %>
+  <p>
+    You will now have the ability to add a 'My Blavel' tab and/or a 'My Blavel'
+    profile box to your Facebook. You can do this by making sure you are on the
+    'My Blavel' <%= link_to 'application page', $FACEBOOK_APP_BASE %>, and then
+    selecting 'My Blavel Settings' from the settings menu on the top right-hand
+    area of Facebook.
+  </p>
+  <%= image_tag '/images/help/facebook/settings_menu.png' %>
+  <p>
+    The Profile tab of this window will enable you to add or remove the tab or
+    profile box from your Facebook, and control who can see your Blavel on
+    Facebook.
+  </p>
+  <%= image_tag '/images/help/facebook/profile_settings.png' %>
+  <p>
+    You're done! Happy Blavelling! Any problems, send us an email at
+    <%= link_to 'feedback@blavel.com', 'mailto:feedback@blavel.com' %>.
+  </p>
+<% end %>
+<% content_for :right_col do %>
+  <h2>other help pages</h2>
+  <ul>
+    <li><%= link_to 'uploading pictures:<br/>the smart way', help_url(:action => 'uploading_pictures') %></li>
+    <li><%= link_to 'private messaging', help_url(:action => 'messaging') %></li>
+  </ul>
+<% end %>

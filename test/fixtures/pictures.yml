@@ -1,0 +1,13 @@
+by_quentin:
+  id: 99999990  
+  post_id: 1
+  title: Quentin's picture
+  description: Some description...
+  location_id: 2633842
+  sequence: 1
+  filename: windsor.jpg
+  content_type: image/jpeg
+  size: 300000
+  width: 1000
+  height: 800
+  created_at: 2008-03-26 11:20:31

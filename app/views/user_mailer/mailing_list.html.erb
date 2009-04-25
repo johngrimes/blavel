@@ -1,0 +1,9 @@
+Hi,
+
+Your friend <%= @post.user.first_name.blank? ? @post.user.login : @post.user.first_name %> just posted a new travel blog entry on Blavel, and they would like you to take a look at it.
+<% if !@post.title.blank? %>
+It's called "<%= @post.title %>".
+<% end %>
+Check it out: <%= @post_path %>
+
+Love from blavel!

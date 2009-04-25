@@ -1,0 +1,30 @@
+.user-grid {
+    width: 100%;
+}
+
+.user-grid td {
+    padding: 5px 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.user img {
+    border: 2px solid #cccccc;
+    vertical-align: middle;
+}
+
+.user a {
+    text-decoration: none;
+}
+
+.user-login {
+    line-height: 30px;
+}
+
+.user .image-link {
+    margin-bottom: 5px;
+}
+
+.user a:hover {
+    text-decoration: underline;
+}

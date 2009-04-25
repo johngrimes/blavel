@@ -1,0 +1,16 @@
+<% content_for (:styles) do %>
+  <%= stylesheet_link_tag 'users/upload_user_picture' %>
+<% end %>
+
+<% if flash[:just_submitted] %>
+  <%= javascript_tag "window.parent.Shadowbox.close()" %>
+<% end %>
+
+<h1><%= @user.profile_pictures.first ? 'change' : 'upload' %> user picture</h1>
+
+<% form_tag update_picture_url(:user_login => @user.login), :method => :put, :multipart => true do %>
+  <%= file_field_tag 'picture' %>
+  <fieldset>
+    <%= submit_tag 'upload!', :class => 'button' %>
+  </fieldset>
+<% end %>

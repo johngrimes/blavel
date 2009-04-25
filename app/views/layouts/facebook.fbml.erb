@@ -1,0 +1,19 @@
+<fb:fbml version="1.1">
+  <%= stylesheet_link_tag 'facebook/facebook' %>
+  <%= yield :styles %>
+  
+  <%= yield :dashboard %>
+  <hr/>
+  
+  <% if flash[:notice] %>
+    <div class="blavel-notice"><%= flash[:notice] %></div>
+  <% elsif flash[:error] %>
+    <div class="blavel-error"><%= flash[:error] %></div>
+  <% end %>
+    
+  <div id="page">  
+    <%= yield :page %>
+  </div>
+  
+  <fb:google-analytics uacct="UA-3880720-1"/>
+</fb:fbml>

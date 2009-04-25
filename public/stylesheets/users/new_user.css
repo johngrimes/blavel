@@ -1,0 +1,28 @@
+#join-form {
+    width: 700px;
+}
+
+#user_login, #user_password, #user_password_confirmation {
+    width: 150px;
+}
+
+#user_email {
+    width: 220px;
+}
+
+.fieldWithErrors {
+    display: inline;
+}
+
+#recaptcha_widget_div {
+    margin-top: 10px;
+    padding-top: 0px;
+}
+
+#recaptcha_table td {
+    height: 1px; /* IE Fix */
+}
+
+#recaptcha_table {
+    background-color: #ffffff;
+}

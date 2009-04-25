@@ -1,0 +1,19 @@
+<%
+  set_utf_json
+  
+  response_hash = Hash.new
+  if @errors
+    response_hash['result'] = 'failed'
+    response_hash['error'] = @error
+    json = response_hash.to_json
+  else
+    response_hash = Hash.new
+    response_hash['result'] = 'success'
+    response_hash['size'] = 'File successfully uploaded.'
+    if @new_post_id
+      response_hash['new_post_id'] = @new_post_id
+    end
+    json = response_hash.to_json
+  end
+%>
+<%= json %>

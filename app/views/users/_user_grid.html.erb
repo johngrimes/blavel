@@ -1,0 +1,27 @@
+<% if user_grid %>
+  <%
+    users = user_grid
+    num_rows = (((users.length - 1) - ((users.length - 1) % row_size)) / row_size) + 1
+  %>
+  <table class="user-grid">
+    <tbody>
+      <% for i in 0..num_rows %>
+        <tr>
+          <%
+            start_index = row_size * i
+            end_index = start_index + row_size - 1
+            if end_index > (users.length - 1)
+              end_index = users.length - 1
+            end
+          %>
+          <% for j in start_index..end_index %>
+            <td class="user">
+              <%= profile_pic_tag users[j], 'tiny' %><br/>
+              <%= link_to users[j].login, user_profile_url(:user_login => users[j].login), :class => 'user-login' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

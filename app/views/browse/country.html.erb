@@ -1,0 +1,34 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'posts/post_list', 
+    'pictures/thumb_grid', 
+    'browse/browse', 
+    :cache => 'cache/browse_all'  %>
+<% end %>
+
+<% @title = @country.name %>
+<% @description = "Browse travel blogs and pictures from #{@country.name}, posted by real travellers." %>
+
+<% content_for(:left_col) do %>
+  <div id="breadcrumb">
+    <%= link_to 'browse', :action => 'index' %>
+    >
+    <%= link_to @continent.name, browse_continent_url(:continent_code => @continent.code, 
+      :continent_name => @continent.name.gsub(/\s/, '-').gsub(/\./, '')) %>
+    >
+  </div>      
+  <h1><%= @country.name %></h1>
+
+  <h2>latest posts</h2>
+  <%= render :partial => "posts/post_summary", :collection => @posts %>
+  <% if @posts.empty? %>
+    <p>No one has posted about this country yet!</p>
+  <% end %>
+  <%= paginate_links @posts %>
+<% end %>
+
+<% if @country.location or !@pictures.empty? %>
+  <% content_for(:right_col) do %>
+    <%= map_image_tag [].push(@country.location), [], 200, 200, true, true %>
+    <%= render :partial => 'pictures/thumb_grid', :object => @pictures, :locals => { :row_size => 1 } %>
+  <% end %>
+<% end %>

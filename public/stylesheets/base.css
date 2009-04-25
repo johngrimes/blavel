@@ -1,0 +1,38 @@
+body {
+	font-family: Trebuchet MS,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 15px;
+	letter-spacing: 1px;
+	line-height: 1.4em;
+}
+
+a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+b {
+	font-weight: bold;	
+}
+
+.hr {
+	margin-top: 20px;
+	border-top: 1px solid #CCCCCC;
+	border-left: 0px solid white;
+	border-right: 0px solid white;
+	border-bottom: 0px solid white;
+	height: 20px;
+        clear: both;
+}
+
+.deem, .deem a {
+	font-size: 13px;
+	color: #666666;	
+}
+
+.clear {
+	clear: both;
+}
+
+#shadowbox_container a:hover {
+	background-color: transparent;
+}

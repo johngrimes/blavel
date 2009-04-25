@@ -1,0 +1,46 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'posts/post_list', 
+    'pictures/thumb_grid', 
+    'browse/browse', 
+    :cache => 'cache/browse_all'  %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'shadowbox/adapter/shadowbox-jquery', 
+    'shadowbox/shadowbox', 
+    :cache => 'browse_location_all'  %>
+<% end %>
+
+<% @title = @location.name %>
+<% @description = "Browse travel blogs and pictures from #{display_location(@location, true)}, posted by real travellers." %>
+
+<% content_for(:left_col) do %>
+  <div id="breadcrumb">
+    <%= link_to 'browse', :action => 'index' %>
+    >
+    <% if @location.country %>
+      <%= link_to @continent.name, 
+        browse_continent_url(:continent_code => @continent.code, 
+        :continent_name => @continent.name.gsub(/\s/, '-')) %>
+      >
+      <%= link_to @country.name, 
+        browse_country_url(:continent_code => @continent.code, 
+        :continent_name => @continent.name.gsub(/\s/, '-'), 
+        :country_code => @country.code, 
+        :country_name => @country.name.gsub(/\s/, '-')) %>
+      >
+    <% end %>
+  </div>    
+  <h1><%= @location.name %></h1>
+
+  <h2>latest posts</h2>
+  <%= render :partial => "posts/post_summary", :collection => @posts %>
+  <% if @posts.empty? %>
+    <p>No one has posted about this location yet!</p>
+  <% end %>
+  <%= paginate_links @posts %>
+<% end %>
+
+<% content_for(:right_col) do %>
+  <%= map_image_tag [].push(@location), [], 200, 200, true %>
+  <%= render :partial => 'pictures/thumb_grid', :object => @pictures, :locals => { :row_size => 1 } %>
+<% end %>

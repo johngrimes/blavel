@@ -1,0 +1,4 @@
+one:
+  follower_id: 1
+  followee_id: 2
+  created_at: <%= 1.days.ago.to_s :db %>

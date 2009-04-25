@@ -1,0 +1,62 @@
+<% content_for (:styles) do %>
+  <%= stylesheet_link_tag 'users/edit_user' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'form', 
+    'users/edit_user', 
+    :cache => 'cache/edit_user_all' %>
+<% end %>
+
+<% if flash[:just_submitted] %>
+  <%= javascript_tag "window.parent.Shadowbox.close();" %>
+<% end %>
+
+<h1>edit profile</h1>
+
+<% form_tag update_profile_url(:user_login => @user.login), :method => :put do %>
+  <table><tbody>
+      <tr>
+        <td class="label">First name:</td>
+        <td class="data"><%= text_field_tag 'user[first_name]', @user.first_name, :class => 'text-field' %></td>
+      </tr>
+      <tr>
+        <td class="label">Surname:</td>
+        <td class="data"><%= text_field_tag 'user[surname]', @user.surname, :class => 'text-field' %></td>
+      </tr>
+      <tr>
+        <td class="label">Date of birth:</td>
+        <td class="data">
+          <%= select_year @user.date_of_birth ? @user.date_of_birth.year : nil, :start_year => 1900, :end_year => Time.now.year, :include_blank => true, :prefix => 'user', :field_name => 'date_of_birth(1i)' %>
+          <%= select_month @user.date_of_birth ? @user.date_of_birth.month : nil, :include_blank => true, :prefix => 'user', :field_name => 'date_of_birth(2i)' %>
+          <%= select_day @user.date_of_birth ? @user.date_of_birth.day : nil, :include_blank => true, :prefix => 'user', :field_name => 'date_of_birth(3i)' %>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Gender:</td>
+        <td class="data"><%= select 'user', 'gender', [ 'male', 'female' ], :selected => @user.gender, :include_blank => true %></td>
+      </tr>
+      <tr>
+        <td class="label">Home town:</td>
+        <td class="data"><%= text_field_tag 'user[home_town]', @user.home_town, :class => 'text-field' %></td>
+      </tr>
+      <tr>
+        <td class="label">About me:</td>
+        <td class="data"><%= text_area_tag 'user[about_me]', @user.about_me %></td>
+      </tr>
+      <tr>
+        <td class="label">Favourite travel experience:</td>
+        <td class="data"><%= text_area_tag 'user[fave_travel_experience]', @user.fave_travel_experience %></td>
+      </tr>
+      <tr>
+        <td class="label">Languages spoken:</td>
+        <td class="data"><%= text_field_tag 'user[languages]', @user.languages, :class => 'text-field' %></td>
+      </tr>
+      <tr>
+        <td class="label">Time zone:</td>
+        <td class="data"><%= time_zone_select 'user', 'time_zone', ActiveSupport::TimeZone.all, :default => @user.time_zone %></td>
+      </tr>
+  </tbody></table>
+  <fieldset>
+    <%= submit_tag 'save changes!', :class => 'button' %>
+  </fieldset>
+<% end %>

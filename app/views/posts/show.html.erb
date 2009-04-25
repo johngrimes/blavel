@@ -1,0 +1,70 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'info_bar',
+    'content',
+    'pictures/thumb_grid',
+    'notes/note',
+    'form',
+    'posts/show_post',
+    :cache => 'cache/show_post_all'  %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'shadowbox/adapter/shadowbox-jquery',
+    'shadowbox/shadowbox',
+    'form',
+    'notes/note',
+    :cache => 'cache/show_post_all' %>
+<% end %>
+
+<% @description = truncate(sanitized(@post.content, true), 200) || '' %>
+
+<% content_for :left_col do %>
+  <h1>
+    <% if @post.title.blank? %>
+      untitled entry<% @title = 'Untitled entry' %>
+    <% else %>
+      <%=h @post.title %><% @title = @post.title %>
+    <% end %>
+  </h1>
+  <div class="info">
+    <div class="item">posted by <%= link_to @post.user.login, user_profile_url(:user_login => @post.user.login, :page => nil) %></div>
+    <div class="item"><%= pretty_date(@post.created_at) %></div>
+  </div>
+  <div class="hr"></div>
+  <% if admin_logged_in? or (logged_in? and @post.user == current_user) %>
+    <div class="actions">
+      <%= link_to 'edit', edit_post_url(:id => @post.id), :class => 'item' %>
+      <%= link_to 'remove', destroy_post_url(:id => @post.id), :confirm => 'Are you sure?', :method => :delete, :class => 'item' %>
+    </div>
+  <% end %>
+  <% if !@post.content.blank? %>
+    <div class="content">
+      <%= sanitized @post.content %>
+    </div>
+    <div class="hr"></div>
+  <% end %>
+  <% if (@post.locations.length == 0 and @post.pictures.length > 3) or (@post.locations.length > 0 and @post.pictures.length > 6)  %>
+    <div class="actions">
+      <%= link_to 'view all pictures', show_all_pictures_url(:post_id => @post.id), :class => 'item' %>
+    </div>
+  <% end %>
+  <%= render :partial => 'pictures/thumb_grid', :object => Picture.find(:all, :conditions => "post_id = #{@post.id}", :order => 'sequence', :limit => 3), :locals => { :row_size => 3 } %>
+  <% if @post.pictures.length > 0 %>
+    <div class="hr"></div>
+  <% end %>
+  <%= render :partial => 'notes/note', :collection => @post.notes %>
+  <%= render :partial => 'notes/add', :object => @post, :locals => { :post => @post } %>
+<% end %>
+
+<% if @post.locations.length > 0 or @post.pictures.length > 3 %>
+  <% content_for :right_col do %>
+    <%= map_image_tag @post.locations, [], 200, 200 %>
+    <% if @post.locations and !@post.locations.empty? %>
+      <div id="map-legend">
+        <% @post.locations.each do |l| %>
+          <div class="legend-item"><%= display_location(l) %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render :partial => 'pictures/thumb_grid', :object => Picture.find(:all, :conditions => "post_id = #{@post.id} and sequence > 3", :order => 'sequence', :limit => 3), :locals => { :row_size => 1 } %>
+  <% end %>
+<% end %>

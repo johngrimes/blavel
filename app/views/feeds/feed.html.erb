@@ -1,0 +1,82 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag 'notes/note', 
+    'feeds/feed', 
+    :cache => 'cache/feed_all'  %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= auto_discovery_link_tag :rss, user_rss_feed_url(:user_login => current_user.login), { :title => "RSS 2.0 feed for #{current_user.login}" } %>
+  <%= javascript_include_tag 'feeds/feed' %>
+<% end %>
+
+<% content_for(:left_col) do %>
+  <table id="title-layout"><tbody><tr>
+        <td id="title">
+          <% form_tag(base_url, :method => :post, :id => 'for-who-form') do %>
+            <fieldset>
+              <%
+                if @everybody
+                  options = '<option value="1">people I\'m following</option><option value="2" selected="selected">everybody</option>'
+                else
+                  options = '<option value="1" selected="selected">people I\'m following</option><option value="2">everybody</option>'
+                end
+              %>
+              <h1>what's happening?</h1>&#160;&#160;for&#160;<%= select_tag 'for_who', options %>
+            </fieldset>
+          <% end %>
+       
+        </td>
+        <td id="feed-link"<%= @everybody ? ' style="display: none"' : '' %>><%= link_to image_tag('/images/rss.gif'), user_rss_feed_url(:user_login => current_user.login) %>&#160;<%= link_to 'subscribe', user_rss_feed_url(:user_login => current_user.login) %></td>
+  </tr></tbody></table>
+  <% if current_user.time_zone.blank? %>
+    <div id="time-zone-alert">
+      <p>Please take a moment to tell us the time zone that you are in so that we can show you appropriate dates and times.</p>
+      <% form_tag update_profile_url(:user_login => current_user.login), :method => :put do %>
+        <%= time_zone_select 'user', 'time_zone', ActiveSupport::TimeZone.all, :default => 'UTC' %><%= submit_tag 'ok', :class => 'button' %>
+        <%= hidden_field_tag 'back_home', 'please' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="feed-items">
+    <%= render :partial => 'feeds/feed_item', :collection => @feed_items %>
+  </div>
+<% end %>
+
+<% content_for(:right_col) do %>
+  <h2>following</h2>
+  <div id="followees">
+    <% @followees.each do |followee| %>
+      <div class="followee">
+        <%= profile_pic_tag followee, 'tiny' %><br/>
+        <%= link_to followee.login, user_profile_url(:user_login => followee.login), :class => 'followee-name' %>
+      </div>
+    <% end %>
+    <% if current_user.followees.length > 6 %>
+      <%= link_to "and #{current_user.followees.length - 6} more&#8230;",
+        show_all_followees_url(:user_login => current_user.login),
+        :class => 'more-link' %>
+    <% end %>
+    <% if @followees.length == 0 %>
+      <div class="null-message">
+        <p>You are not currently following anybody.</p>
+        <p>Following other users allows you to get updates in your feed when they post or leave notes.</p>
+        <p>You can follow somebody by clicking on their user name, and hitting the 'start following' link on their profile page.</p>
+      </div>
+    <% end %>
+  </div>
+  <% if !@followers.empty? %>
+    <h2>people that follow you</h2>
+    <div id="followers">
+      <% @followers.each do |follower| %>
+        <div class="follower">
+          <%= profile_pic_tag follower, 'tiny' %><br/>
+          <%= link_to follower.login, user_profile_url(:user_login => follower.login), :class => 'follower-name' %>
+        </div>
+      <% end %>
+      <% if current_user.followers.length > 6 %>
+        <%= link_to "and #{current_user.followers.length - 6} more&#8230;",
+          show_all_followers_url(:user_login => current_user.login),
+          :class => 'more-link' %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

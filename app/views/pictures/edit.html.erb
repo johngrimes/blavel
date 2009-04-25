@@ -1,0 +1,47 @@
+<% content_for(:styles) do %>
+  <%= stylesheet_link_tag '/javascripts/yui/build/autocomplete/assets/skins/sam/autocomplete' %>
+  <%= stylesheet_link_tag 'info_bar', 
+    'location_select', 
+    'posts/new_edit_post', 
+    'pictures/edit_pictures', 
+    :cache => 'cache/edit_pictures_all' %>
+<% end %>
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'yui/build/yahoo-dom-event/yahoo-dom-event', 
+    'yui/build/animation/animation-min', 
+    'yui/build/connection/connection-min', 
+    'yui/build/autocomplete/autocomplete-min', 
+    'shadowbox/adapter/shadowbox-jquery', 
+    'shadowbox/shadowbox', 
+    'form', 
+    'location_select', 
+    'pictures/edit_pictures', 
+    :cache => 'cache/edit_pictures_all' %>
+<% end %>
+
+<% @title = 'Edit pictures' %>
+
+<h1>edit pictures!</h1>
+
+<div class="tabs">
+  <%= link_to 'edit words', edit_post_url(:id => @post.id), :class => 'tab' %>
+  <div class="selected tab">edit pictures</div>
+  <%= link_to @post.pictures.empty? ? 'add pictures' : 'add more pictures', add_pictures_url(@post), :class => 'tab' %>
+  <%= link_to 'send to mailing list', show_mailing_list_url(:post_id => @post.id), :class => 'tab' %>
+</div>
+<div class="hr"></div>
+<div class="actions">
+  <%= link_to 'view post', verbose_post_path(@post), :class => 'item' %>
+</div>
+
+<% if !@post.pictures or @post.pictures.empty? %>
+  <p>There are no pictures to edit.</p>
+<% else %>
+  <% form_tag update_pictures_url(:post_id => @post.id), :method => :put, :id => 'edit-pictures-form' do  %>
+
+    <%= render :partial => "pictures/edit_picture", :collection => @pictures %>
+
+    <%= submit_tag 'save changes!', :class => 'button' %>
+
+  <% end %>
+<% end %>

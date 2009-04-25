@@ -1,0 +1,24 @@
+<% if thumb_grid %>
+  <%
+  pictures = thumb_grid
+  num_rows = (((pictures.length - 1) - ((pictures.length - 1) % row_size)) / row_size) + 1
+%>
+  <table class="thumb-grid">
+    <tbody>
+      <% for i in 0..(num_rows - 1) %>
+        <tr>
+          <%
+            start_index = row_size * i
+            end_index = start_index + row_size - 1
+            if end_index > (pictures.length - 1)
+              end_index = pictures.length - 1
+            end
+          %>
+          <% for j in start_index..end_index %>
+            <td><%= link_to image_tag(get_picture_file_url(:id => pictures[j].id, :format => 'small'), :size => picture_size(pictures[j], 'small'), :alt => picture_alt(pictures[j])), show_picture_url(:id => pictures[j].id), :title => picture_alt(pictures[j]) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

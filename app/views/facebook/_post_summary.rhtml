@@ -1,0 +1,75 @@
+<%# Strip tags from content and make null into empty -%>
+<% @content = sanitized(post_summary.content, true) || '' -%>
+  
+<div class="post-summary">  
+  <table class="summary-layout"><tbody>
+      
+      <%# Show title in a row above the words-pictures layout if there is no content, and there is more than one picture -%>      
+      <% if !post_summary.title.blank? and post_summary.content.blank? and post_summary.pictures and post_summary.pictures.length > 1  -%>
+        <tr>
+          <td class="pictures-only-title">
+            <div class="title"><%= link_to post_summary.title, verbose_post_path(post_summary, true) %></div>
+          </td>
+        </tr>
+        <% if post_summary.locations.length > 0 -%>
+          <tr>
+            <td class="location">
+              <%= post_location_summary(post_summary, false, true) %>
+            </td>
+          </tr>
+        <% end -%>
+      <% end -%>
+                                                                                        
+      <tr class="words-pictures">
+        
+        <%# Show the words cell unless there is no title or content, or if there is a title but no content and more than one picture -%>
+        <% unless (post_summary.title.blank? and post_summary.content.blank?) or (!post_summary.title.blank? and post_summary.content.blank? and post_summary.pictures and post_summary.pictures.length > 1) -%>
+          <td class="words">
+            <% if !post_summary.title.blank? -%>            
+              <div class="title"><%= link_to post_summary.title, verbose_post_path(post_summary, true) %></div>           
+            <% end -%>
+            <% if post_summary.locations.length > 0 -%>
+              <div class="location"><%= post_location_summary(post_summary, false, true) %></div>
+            <% end -%>
+          
+            <%=h truncate(@content, 255) -%>
+          
+            <%# If content is truncated to 255 characters, add a more link -%>
+            <% if @content.length > 255 -%>
+              <br />
+              <div class="more-link"><%= link_to 'view full post', verbose_post_path(post_summary, true) %></div>
+            <% end -%>
+          </td>
+        <% end -%>
+        
+        <%# Show the pictures cell if there are any pictures -%>
+        <% if post_summary.pictures and post_summary.pictures.length > 0 -%>
+          <td class="pictures">
+          
+            <%# Put the pictures in a table to center them vertically within the post summary -%>
+            <table><tbody><tr>
+                  <%
+                  # Work out the number of pictures to display
+                  if (post_summary.title.blank? and post_summary.content.blank?) or (!post_summary.title.blank? and post_summary.content.blank? and post_summary.pictures and post_summary.pictures.length > 1)
+                    if post_summary.pictures.length > max_pictures
+                      number_display_pictures = max_pictures
+                    else
+                      number_display_pictures = post_summary.pictures.length
+                    end
+                  else
+                    number_display_pictures = 1
+                  end
+                  -%>
+                  <%
+                  for i in 1..number_display_pictures
+                    display_picture = Picture.find(:first, :conditions => "post_id = #{post_summary.id} and sequence = #{i}")
+                    -%>
+                    <% if display_picture %><td><%= link_to image_tag(get_picture_file_url(:id => display_picture.id, :format => 'tiny', :host => $DEFAULT_HOST), :size => picture_size(display_picture, 'tiny'), :alt => picture_alt(display_picture)), show_picture_url(:id => display_picture.id, :host => $DEFAULT_HOST) %></td><% end %>
+                  <% end -%>
+            </tr></tbody></table>
+          </td>
+        <% end -%>
+      </tr>
+      
+  </tbody></table>
+</div>

@@ -1,0 +1,16 @@
+$('#convo').hide();
+$('#convo').empty();
+$('#convo').prepend("<%= escape_javascript(render(:partial => 'messages/convo.html.erb', :object => @message)) %>");
+$('#convo').fadeIn('slow', function() {
+  $('#convo .message:first').addClass('first');
+  if (!$('#convo-<%= @message.id %>').hasClass('first')) {
+    $.scrollTo('#convo-<%= @message.id %>', 400, {
+        offset: -19,
+        onAfter: function() {
+          $('#convo-<%= @message.id %> .content').effect('highlight', { color: '#ffcc99' }, 1000);
+        }
+      });
+  } else {
+    $('#convo-<%= @message.id %> .content').effect('highlight', { color: '#ffcc99' }, 2000);
+  }
+});
