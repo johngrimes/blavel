@@ -1,5 +1,4 @@
 config/database.yml
-config/deploy.rb
 config/environment.rb
 log/*
 nbproject/*
