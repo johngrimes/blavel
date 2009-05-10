@@ -23,10 +23,6 @@ after :deploy, 'deploy:cleanup'
 
 task :after_update_code, :roles => :app do
 
-  # Generate documentation and link it to opencode in the public directory
-  run "cd #{release_path}; rake doc:app"
-  run "ln -nfs #{release_path}/doc/app #{release_path}/public/opencode"
-
   # Create symbolic links between system picture directories and the public
   # folder
   run "ln -nfs #{shared_path}/system/pictures #{release_path}/public/pictures"
@@ -43,6 +39,10 @@ task :after_update_code, :roles => :app do
   # Create symbolic links to common country and location data dumps
   run "ln -nfs #{shared_path}/system/db/countries.txt #{release_path}/db/countries.txt"
   run "ln -nfs #{shared_path}/system/db/locations.txt #{release_path}/db/locations.txt"
+
+  # Generate documentation and link it to opencode in the public directory
+  run "cd #{release_path}; rake doc:app"
+  run "ln -nfs #{release_path}/doc/app #{release_path}/public/opencode"
 
   # Change the owner and group of everything under the deployment directory to
   # webadmin
