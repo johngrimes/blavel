@@ -11,7 +11,7 @@ a {
 }
 
 b {
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 .hr {
@@ -26,7 +26,7 @@ b {
 
 .deem, .deem a {
 	font-size: 13px;
-	color: #666666;	
+	color: #666666;
 }
 
 .clear {
@@ -35,4 +35,8 @@ b {
 
 #shadowbox_container a:hover {
 	background-color: transparent;
+}
+
+#fdbk_container a:hover {
+  background-color: transparent;
 }

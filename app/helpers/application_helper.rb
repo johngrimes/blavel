@@ -1,20 +1,20 @@
-module ApplicationHelper  
-  
+module ApplicationHelper
+
   # Sets content type of response to UTF8 XML.
   def set_utf_xml
     headers['Content-Type'] = 'text/xml; charset=UTF-8'
   end
-  
+
   # Sets content type of response to UTF8 JSON.
   def set_utf_json
     headers['Content-Type'] = 'application/json; charset=UTF-8'
   end
-  
+
   # Sets content type of response to UTF8 RSS.
   def set_utf_rss
     headers['Content-Type'] = 'application/rss+xml; charset=UTF-8'
   end
-  
+
   # Outputs a set of customised pagination links
   def paginate_links(records)
     links = will_paginate(records)
@@ -24,22 +24,22 @@ module ApplicationHelper
       return links.gsub('Previous', 'previous').gsub('Next', 'next')
     end
   end
-  
+
   # Formats a date for display.
   def pretty_date(date)
     "#{date.strftime('%B')} #{date.day}, #{date.year}"
   end
-  
+
   # Formats a date to be RFC822 compliant (used in RSS).
   def rfc822_date(date)
     date.strftime("%a, %d %b %Y %H:%M:%S GMT")
   end
-  
+
   # Formats a date to be W3C compliant (used in Sitemaps.org format).
   def w3c_date(date)
     date.strftime("%Y-%m-%dT%H:%M:%SZ")
   end
-  
+
   # Outputs the necessary scripts to enable Google Analytics on a page.
   def analytics_tag
     "<script type=\"text/javascript\">
@@ -55,5 +55,18 @@ module ApplicationHelper
             pageTracker._trackPageview();
     //-->
     </script>"
+  end
+
+  # Outputs the necessary scripts and styles to enable the Get Satisfaction
+  # feedback widget on a page.
+  def feedback_tag
+    '<style type="text/css">@import url("http://s3.amazonaws.com/getsatisfaction.com/feedback/feedback.css");</style>
+    <script src="http://s3.amazonaws.com/getsatisfaction.com/feedback/feedback.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+      var tab_options = {}
+      tab_options.placement = "left";  // left, right, bottom, hidden
+      tab_options.color = "#663300"; // hex (#FF0000) or color (red)
+      GSFN.feedback("http://getsatisfaction.com/blavel/feedback/topics/new?display=overlay&style=idea", tab_options);
+    </script>'
   end
 end
