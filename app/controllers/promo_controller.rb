@@ -34,8 +34,10 @@ class PromoController < ApplicationController
     @active_continents = []
     @locations.each do |location|
       @active_locations.push Location.find(location['location_id'])
-      @active_countries.push @active_locations.last.country
-      @active_continents.push @active_countries.last.continent
+      if @active_locations.last.country
+        @active_countries.push @active_locations.last.country
+        @active_continents.push @active_countries.last.continent
+      end
     end
     @active_countries = @active_countries.uniq
     @active_continents = @active_continents.uniq
