@@ -45,12 +45,17 @@ xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9",
   end
   @active_locations.each do |location|
     xml.url do
-      xml.loc browse_location_url(:continent_code => location.country.continent.code, 
-        :continent_name => location.country.continent.name.gsub(/\s/, '-'), 
-        :country_code => location.country.code, 
-        :country_name => location.country.name.gsub(/\s/, '-'), 
-        :location_id => location.id, 
-        :location_name => location.name.gsub(/\s/, '-'))
+      if location.country
+        xml.loc browse_location_url(:continent_code => location.country.continent.code, 
+          :continent_name => location.country.continent.name.gsub(/\s/, '-'), 
+          :country_code => location.country.code, 
+          :country_name => location.country.name.gsub(/\s/, '-'), 
+          :location_id => location.id, 
+          :location_name => location.name.gsub(/\s/, '-'))
+      else
+        xml.loc browse_location_no_country_url(:location_id => location.id, 
+          :location_name => location.name.gsub(/\s/, '-'))
+      end
       xml.priority '0.5'
     end
   end
