@@ -69,6 +69,6 @@ module ProfilePicturesHelper
   
   # Returns the URL of the blank profile picture of the specified format.
   def blank_profile_pic_url(format = 'tiny')
-    "/profile_pictures/profile_blank_#{format}.png"
+    "/images/profile_pictures/profile_blank_#{format}.png"
   end
 end
