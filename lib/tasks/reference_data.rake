@@ -2,11 +2,7 @@ namespace :blavel do
   desc 'Download location file from GeoNames'
   task :download_locations do
     locations_path = 'http://download.geonames.org/export/dump/allCountries.zip'
-    if RAILS_ENV = 'development'
-    	download_dir = '/tmp'
-  	else
-    	download_dir = '/var/www/sites/blavel.com/shared/db'
-    end
+    download_dir = '/var/www/sites/blavel.com/shared/db'
     
     system "rm -f #{download_dir}/locations.txt"    
     system "wget #{locations_path} -O #{download_dir}/locations.zip"
@@ -18,11 +14,7 @@ namespace :blavel do
   desc 'Download country file from GeoNames'
   task :download_countries do
     countries_path = 'http://download.geonames.org/export/dump/countryInfo.txt'
-    if RAILS_ENV = 'development'
-    	download_dir = '/tmp'
-  	else
-    	download_dir = '/var/www/sites/blavel.com/shared/db'
-    end
+    download_dir = '/var/www/sites/blavel.com/shared/db'
     
     system "rm -f #{download_dir}/countries.txt"
     system "wget #{countries_path} -O #{download_dir}/countries-with-header.txt"
@@ -32,11 +24,7 @@ namespace :blavel do
   
   desc 'Populate locations from downloaded GeoNames file'
   task :populate_locations => :environment do
-    if RAILS_ENV = 'development'
-    	download_dir = '/tmp'
-  	else
-    	download_dir = '/var/www/sites/blavel.com/shared/db'
-    end
+    download_dir = '/var/www/sites/blavel.com/shared/db'
   
     statement = %{LOAD DATA INFILE '#{download_dir}/locations.txt' 
                   INTO TABLE locations
@@ -51,11 +39,7 @@ namespace :blavel do
 
   desc 'Populate countries from downloaded GeoNames file'
   task :populate_countries => :environment do
-    if RAILS_ENV = 'development'
-    	download_dir = '/tmp'
-  	else
-    	download_dir = '/var/www/sites/blavel.com/shared/db'
-    end
+    download_dir = '/var/www/sites/blavel.com/shared/db'
     
     statement = %{LOAD DATA INFILE '#{download_dir}/countries.txt' 
                   INTO TABLE countries
