@@ -23,11 +23,6 @@ after :deploy, 'deploy:cleanup'
 
 task :after_update_code, :roles => :app do
 
-  # Create symbolic links between system picture directories and the public
-  # folder
-  run "ln -nfs #{shared_path}/system/pictures #{release_path}/public/pictures"
-  run "ln -nfs #{shared_path}/system/profile_pictures #{release_path}/public/profile_pictures"
-
   # Create symbolic link to a common database.yml file in the system directory,
   # which is not under source control
   run "ln -nfs #{shared_path}/db/database.yml #{release_path}/config/database.yml"
