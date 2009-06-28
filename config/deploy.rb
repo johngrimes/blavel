@@ -6,9 +6,9 @@ set :deploy_to, "/var/www/sites/blavel.com"
 set :user, "deploy"
 set :runner, "deploy"
 
-role :app, "67.23.31.183"
-role :web, "67.23.31.183"
-role :db,  "67.23.31.183", :primary => true
+role :app, "blavel.com"
+role :web, "blavel.com"
+role :db,  "blavel.com", :primary => true
 
 namespace :deploy do
 
