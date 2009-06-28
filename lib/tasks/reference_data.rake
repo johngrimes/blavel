@@ -5,7 +5,7 @@ namespace :blavel do
     if RAILS_ENV = 'development'
     	download_dir = '/tmp'
   	else
-    	download_dir = '/home/webadmin/blavel.com/shared/system/db'
+    	download_dir = '/var/www/sites/blavel.com/shared/db'
     end
     
     system "rm -f #{download_dir}/locations.txt"    
@@ -21,7 +21,7 @@ namespace :blavel do
     if RAILS_ENV = 'development'
     	download_dir = '/tmp'
   	else
-    	download_dir = '/home/webadmin/blavel.com/shared/system/db'
+    	download_dir = '/var/www/sites/blavel.com/shared/db'
     end
     
     system "rm -f #{download_dir}/countries.txt"
@@ -35,7 +35,7 @@ namespace :blavel do
     if RAILS_ENV = 'development'
     	download_dir = '/tmp'
   	else
-    	download_dir = '/home/webadmin/blavel.com/shared/system/db'
+    	download_dir = '/var/www/sites/blavel.com/shared/db'
     end
   
     statement = %{LOAD DATA INFILE '#{download_dir}/locations.txt' 
@@ -54,7 +54,7 @@ namespace :blavel do
     if RAILS_ENV = 'development'
     	download_dir = '/tmp'
   	else
-    	download_dir = '/home/webadmin/blavel.com/shared/system/db'
+    	download_dir = '/var/www/sites/blavel.com/shared/db'
     end
     
     statement = %{LOAD DATA INFILE '#{download_dir}/countries.txt' 
