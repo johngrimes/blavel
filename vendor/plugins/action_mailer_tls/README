@@ -1,0 +1,17 @@
+I found this piece of code at
+http://www.stephenchu.com/2006/06/how-to-use-gmail-smtp-server-to-send.html,
+but couldn't find it hosted anywhere, so voila!
+
+Type
+script/plugin install git://github.com/johngrimes/action_mailer_tls.git 
+to install it.
+
+Here is the accompanying example configuration:
+ActionMailer::Base.server_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "mycompany.com",
+  :authentication => :plain,
+  :user_name => "username",
+  :password => "password"
+}
