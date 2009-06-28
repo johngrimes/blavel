@@ -4,6 +4,6 @@ ActionMailer::Base.smtp_settings = {
   :port => 587,
   :domain => "blavel.com",
   :authentication => :plain,
-  :user_name => "blavel@blavel.com",
+  :user_name => "feedback@blavel.com",
   :password => "2001gattaca"
 }
