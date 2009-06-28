@@ -49,10 +49,6 @@ ActionController::Routing::Routes.draw do |map|
     :conditions => { :method => :delete }
 
   # Pictures
-  map.get_picture_file "/pictures/:id/:format",
-    :controller => 'pictures',
-    :action => 'get_file',
-    :requirements => { :id => /\d+/, :format => /.+/ }
   map.show_picture "/pictures/:id",
     :controller => 'pictures',
     :action => 'show',
@@ -265,10 +261,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'users',
     :action => 'show',
     :requirements => { :page => /\d+/ }
-  map.get_profile_pic "/:user_login/profile-pic/:format",
-    :controller => 'users',
-    :action => 'get_profile_pic',
-    :requirements => { :format => /.+/ }
   map.edit_profile "/:user_login/edit",
     :controller => 'users',
     :action => 'edit',

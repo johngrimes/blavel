@@ -10,13 +10,6 @@ class PicturesControllerTest < ActionController::TestCase
   
   # START Pictures Action Tests
   
-  def test_get_file
-    get :get_file,
-      :id => pictures(:by_quentin).id,
-      :format => 'original'
-    assert_response :success
-  end
-  
   def test_show
     get :show,
       :id => pictures(:by_quentin).id
@@ -77,14 +70,6 @@ class PicturesControllerTest < ActionController::TestCase
   # END Pictures Action Tests
   
   # START Pictures Defect Tests
-  
-  def test_get_file_nonexistent_picture
-    assert_raise(ActiveRecord::RecordNotFound) {
-      get :get_file,
-      :id => 99,
-      :format => 'original'
-    }
-  end
   
   def test_show_nonexistent_picture
     assert_raise(ActiveRecord::RecordNotFound) {

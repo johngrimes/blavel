@@ -15,7 +15,7 @@
             end
           %>
           <% for j in start_index..end_index %>
-            <td><%= link_to image_tag(get_picture_file_url(:id => pictures[j].id, :format => 'small'), :size => picture_size(pictures[j], 'small'), :alt => picture_alt(pictures[j])), show_picture_url(:id => pictures[j].id), :title => picture_alt(pictures[j]) %></td>
+            <td><%= link_to image_tag(pictures[j].public_filename(:small), :size => picture_size(pictures[j], 'small'), :alt => picture_alt(pictures[j])), show_picture_url(:id => pictures[j].id), :title => picture_alt(pictures[j]) %></td>
           <% end %>
         </tr>
       <% end %>

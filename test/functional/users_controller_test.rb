@@ -149,13 +149,6 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
-  def test_get_profile_pic
-    get :get_profile_pic,
-      :user_login => users(:quentin).login,
-      :format => 'tiny'
-    assert_response :success
-  end
-
   # END User Action Tests
 
   # START User Defect Tests
@@ -164,14 +157,6 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       get :show,
       :user_login => 'roger'
-    }
-  end
-
-  def test_get_nonexistent_profile_pic
-    assert_raise(ActiveRecord::RecordNotFound) {
-      get :get_profile_pic,
-      :user_login => 'roger',
-      :format => 'tiny'
     }
   end
 

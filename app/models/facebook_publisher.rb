@@ -23,7 +23,7 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     pictures = Picture.find_all_by_post_id(post.id, :order => 'sequence', :limit => 3)
     images = []
     pictures.each do |picture|
-      images.push image(get_picture_file_url(:id => picture.id, :format => 'tiny', :host => $DEFAULT_HOST), show_picture_url(:id => picture.id, :host => $DEFAULT_HOST))
+      images.push image(picture.public_filename(:tiny), show_picture_url(:id => picture.id, :host => $DEFAULT_HOST))
     end
     send_as :user_action
     from post.user.facebook_user.facebook_session.user

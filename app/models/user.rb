@@ -2,7 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   has_many :posts
   has_many :notes
-  has_many :profile_pictures
+  has_one :profile_picture
   has_many :mailees
   has_one :facebook_user
   

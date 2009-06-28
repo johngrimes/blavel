@@ -4,7 +4,7 @@ class Picture < ActiveRecord::Base
   belongs_to :post
   belongs_to :location
   has_many :notes
-  has_attachment  :storage => :file_system, 
+  has_attachment  :storage => :s3,
     :max_size => 20.megabytes,
     :content_type => :image,
     :thumbnails => { :display => '600x600>', :small => '200x200>', :tiny => '100x100>' },
@@ -43,7 +43,7 @@ class Picture < ActiveRecord::Base
       begin
         
         # Call facebook api to refresh image with the url of this picture
-        fb_session.server_cache.refresh_img_src(get_picture_file_url(:id => id, :format => 'tiny', :host => $DEFAULT_HOST))
+        fb_session.server_cache.refresh_img_src(public_filename(:tiny))
       rescue Exception => exception
         AdminMailer.deliver_error(exception)
       end

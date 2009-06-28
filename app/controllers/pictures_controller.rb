@@ -2,34 +2,6 @@ class PicturesController < ApplicationController
   layout 'standard', :only => [ :show, :show_all, :add, :edit ]
   before_filter :login_required, :only => [ :add, :edit, :update, :destroy ]
 
-  # Responds with a picture file of a specified size.
-  # Parameters:: id, format
-  # Route:: GET /pictures/:id/:format
-  def get_file
-    if params[:format] == 'original'
-
-      # If the original format is requested, get the picture with the id
-      # requested, checking that it exists
-      @picture = Picture.find(params[:id])
-    else
-
-      # If a different format other than original is requested, find the child
-      # record of the requested id with the matching format, checking that it
-      # exists
-      if !@picture = Picture.find_by_parent_id(params[:id], :conditions => [ "thumbnail = ?", params[:format] ])
-        raise ActiveRecord::RecordNotFound
-      end
-    end
-
-    # Work out directory numbers for picture
-    dir_1 = (params[:id].to_i / 10000) % 10000
-    dir_2 = (params[:id].to_i % 10000)
-
-    # Send the picture file with a mime type of image/jpeg
-    send_file "#{RAILS_ROOT}/public/pictures/#{dir_1.to_s.rjust(4, '0')}/#{dir_2.to_s.rjust(4, '0')}/#{@picture.filename}",
-      :type => 'image/jpeg'
-  end
-
   # Displays a specified picture.
   # Parameters:: id
   # Route:: GET /pictures/:id

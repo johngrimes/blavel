@@ -1,19 +1,6 @@
 require 'test_helper'
 
 class PicturesRoutingTest < ActiveSupport::TestCase
-  def test_get_picture_file
-    assert_generates "/pictures/1/display", 
-      :controller => 'pictures', 
-      :action => 'get_file',
-      :id => '1',
-      :format => 'display'
-    assert_recognizes({ :controller => 'pictures', 
-      :action => 'get_file',
-      :id => '1',
-      :format => 'display' },
-      "/pictures/1/display")
-  end
-  
   def test_show_picture
     assert_generates "/pictures/1", 
       :controller => 'pictures', 

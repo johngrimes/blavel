@@ -194,38 +194,6 @@ class UsersController < ApplicationController
     end
   end
   
-  # Responds with a profile picture for a specified user, and of a specified
-  # size.
-  # Parameters:: user_login, format
-  # Route:: GET /:user_login/profile-pic/:format
-  def get_profile_pic
-    
-    # Get the specified user, making sure that it exists
-    if !@user = User.find_by_login(params[:user_login])
-      raise ActiveRecord::RecordNotFound
-    end
-    
-    # Find the parent picture, making sure it exists
-    # This needs to be done even if the format is not original, because it is
-    # needed to construct the picture url
-    if !@parent_picture = ProfilePicture.find_by_user_id(@user.id)
-      raise ActiveRecord::RecordNotFound
-    end
-     
-    # If the format requested is original, return the parent picture
-    # Otherwise, find the child picture of the appropriate format
-    if params[:format] == 'original'
-      @picture = @parent_picture
-    else
-      @picture = ProfilePicture.find_by_parent_id(@parent_picture.id, 
-        :conditions => [ "thumbnail = ?", params[:format] ])
-    end
-    
-    # Send the picture file with a mime type of image/jpeg
-    send_file "#{RAILS_ROOT}/public/profile_pictures/0000/#{@parent_picture.id.to_s.rjust(4, '0')}/#{@picture.filename}",
-      :type => 'image/jpeg'
-  end
-  
   private
   
   def destroy_user_profile_pics(user)

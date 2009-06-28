@@ -9,8 +9,8 @@ module ProfilePicturesHelper
     # If the user has uploaded a profile pic, use that
     # Otherwise, use the blank profile pic image
     # Images link to the user's profile page
-    if user.profile_pictures.first      
-      link_to image_tag(get_profile_pic_url(:user_login => user.login, :format => format), 
+    if user.profile_picture      
+      link_to image_tag(user.profile_picture.public_filename(format.to_sym), 
         :size => profile_pic_size(user, format), 
         :alt => user.login), 
         user_profile_url(:user_login => user.login), 

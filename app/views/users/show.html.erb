@@ -35,7 +35,7 @@
           <%= profile_pic_tag @user, 'display' %>
           <div class="actions">
             <% if (logged_in? and @user == current_user) or admin_logged_in? %>
-              <a rel="shadowbox;player=iframe;height=150;width=300" href="/<%= @user.login %>/picture/upload" class="item"><%= @user.profile_pictures.first ? 'change' : 'upload&nbsp;a&nbsp;pic' %></a>
+              <a rel="shadowbox;player=iframe;height=150;width=300" href="/<%= @user.login %>/picture/upload" class="item"><%= @user.profile_picture ? 'change' : 'upload&nbsp;a&nbsp;pic' %></a>
             <% end %>
           </div>
         </td>

@@ -66,19 +66,6 @@ class UsersRoutingTest < ActiveSupport::TestCase
       "/bandersnatch/page.5")
   end
   
-  def test_get_profile_pic
-    assert_generates "/bandersnatch/profile-pic/display", 
-      :controller => 'users', 
-      :action => 'get_profile_pic',
-      :user_login => 'bandersnatch',
-      :format => 'display'
-    assert_recognizes({ :controller => 'users', 
-      :action => 'get_profile_pic',
-      :user_login => 'bandersnatch',
-      :format => 'display' },
-      "/bandersnatch/profile-pic/display")
-  end
-  
   def test_edit_profile
     assert_generates "/bandersnatch/edit", 
       :controller => 'users', 
