@@ -107,7 +107,7 @@ namespace :blavel do
   end
 
   desc 'Populate all reference data first time'
-  task :populate_reference_data => [:populate_locations, :populate_countries, :populate_continents, :populate_location_types] do
+  task :populate_reference_data_first_time => [:populate_locations, :populate_countries, :populate_continents, :populate_location_types] do
     Rake::Task[ "blavel:index_location_search" ].invoke
   end
 
