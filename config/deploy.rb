@@ -6,9 +6,9 @@ set :deploy_to, "/var/www/sites/blavel.com"
 set :user, "deploy"
 set :runner, "deploy"
 
-role :app, "blavel.com"
-role :web, "blavel.com"
-role :db,  "blavel.com", :primary => true
+role :app, "74.207.246.162"
+role :web, "74.207.246.162"
+role :db,  "74.207.246.162", :primary => true
 
 namespace :deploy do
 
@@ -38,6 +38,9 @@ task :after_update_code, :roles => :app do
   # Generate documentation and link it to opencode in the public directory
   run "cd #{release_path}; rake doc:app"
   run "ln -nfs #{release_path}/doc/app #{release_path}/public/opencode"
+
+  # Symlink to rake task for controlling thin cluster
+  run "ln -nfs #{deploy_to}/../common/tasks/thin.rake #{release_path}/lib/tasks/thin.rake"
 
   # Change the owner and group of everything under the deployment directory to
   # webadmin
