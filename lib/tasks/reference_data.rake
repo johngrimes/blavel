@@ -106,6 +106,11 @@ namespace :blavel do
     Rake::Task[ "blavel:reindex_location_search" ].invoke
   end
 
+  desc 'Populate all reference data first time'
+  task :populate_reference_data => [:populate_locations, :populate_countries, :populate_continents, :populate_location_types] do
+    Rake::Task[ "blavel:index_location_search" ].invoke
+  end
+
   desc 'Refresh locations and countries from Geonames first time'
   task :refresh_locations_first_time => [:download_locations, :download_countries, :populate_locations, :populate_countries, :populate_continents, :populate_location_types] do
     Rake::Task[ "blavel:index_location_search" ].invoke
