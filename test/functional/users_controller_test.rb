@@ -250,6 +250,13 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_redirected_to :controller => 'sessions', :action => 'new'
   end
 
+  def test_update_picture_no_picture_attached
+    assert_no_difference 'ProfilePicture.count' do
+      put :update_picture,
+        :user_login => users(:quentin).login
+    end
+  end
+
   # END User Defect Tests
 
   protected

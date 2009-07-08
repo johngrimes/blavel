@@ -177,19 +177,22 @@ class UsersController < ApplicationController
       redirect_to :controller => 'sessions', :action => 'new'
     else
       
-      # Destroy any profile pictures currently associated with the 
-      # specified user
-      destroy_user_profile_pics(@user)   
+      if params[:picture]
+        # Destroy any profile pictures currently associated with the 
+        # specified user
+        destroy_user_profile_pics(@user)   
       
-      # Create a new profile picture and populate it with data
-      @picture = ProfilePicture.new
-      @picture.user = @user
-      @picture.uploaded_data = params[:picture]
-      @picture.content_type = 'image/jpeg'
+        # Create a new profile picture and populate it with data
+        @picture = ProfilePicture.new
+        @picture.user = @user
+        @picture.uploaded_data = params[:picture]
+        @picture.content_type = 'image/jpeg'
       
-      # Save new profile picture and redirect back to upload picture action
-      @picture.save!
-      flash.now[:just_submitted] = true
+        # Save new profile picture and redirect back to upload picture action
+        @picture.save!
+        flash.now[:just_submitted] = true
+      end
+
       render :template => 'users/upload_picture', :layout => 'dialog'
     end
   end
