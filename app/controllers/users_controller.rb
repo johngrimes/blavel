@@ -177,7 +177,7 @@ class UsersController < ApplicationController
       redirect_to :controller => 'sessions', :action => 'new'
     else
       
-      if params[:picture]
+      if !params[:picture].blank?
         # Destroy any profile pictures currently associated with the 
         # specified user
         destroy_user_profile_pics(@user)   

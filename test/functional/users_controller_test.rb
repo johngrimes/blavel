@@ -254,6 +254,16 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_no_difference 'ProfilePicture.count' do
       put :update_picture,
         :user_login => users(:quentin).login
+      assert (flash.now[:just_submitted] != true)
+    end
+  end
+
+  def test_update_picture_empty_string_picture_field
+    assert_no_difference 'ProfilePicture.count' do
+      put :update_picture,
+        :user_login => users(:quentin).login,
+        :picture => ''
+      assert (flash.now[:just_submitted] != true)
     end
   end
 
