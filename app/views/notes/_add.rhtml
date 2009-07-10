@@ -9,5 +9,5 @@
     </fieldset>
   <% end %>
 <% else %>
-  <p class="leave-note"><%= link_to 'Login', login_url %> or <%= link_to 'join', join_url %> to leave a note, or to send bandersnatch a private message.</p>
+  <p class="leave-note"><%= link_to 'Login', login_url %> or <%= link_to 'join', join_url %> to leave a note, or to send <%= owner.login %> a private message.</p>
 <% end %>
