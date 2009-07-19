@@ -11,10 +11,9 @@ role :web, "74.207.246.162"
 role :db,  "74.207.246.162", :primary => true
 
 namespace :deploy do
-
-  # Restarts Phusion Passenger
   task :restart do
-    run "touch #{current_path}/tmp/restart.txt"
+    sudo "service thin-blavel stop"
+    sudo "service thin-blavel start"
   end
 end
 
@@ -42,14 +41,14 @@ task :after_update_code, :roles => :app do
   # Symlink to rake task for controlling thin cluster
   run "ln -nfs #{deploy_to}/../common/tasks/thin.rake #{release_path}/lib/tasks/thin.rake"
 
-  # Change the owner and group of everything under the deployment directory to
-  # webadmin
-  sudo "chown -R deploy:www-data #{deploy_to}"
+  set_permissions
 end
 
 task :after_setup, :roles => [:app, :db, :web] do
+  set_permissions
+end
 
-  # Change the owner and group of everything under the deployment directory to
-  # webadmin
+task :set_permissions do
   sudo "chown -R deploy:www-data #{deploy_to}"
+  sudo "chmod -R g+w #{deploy_to}"
 end
