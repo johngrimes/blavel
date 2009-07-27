@@ -17,7 +17,7 @@ xml.rss :version => '2.0', 'xmlns:atom' => 'http://www.w3.org/2005/Atom', 'xmlns
           xml.title "#{feed_item.user.login} made a post"
           xml.link verbose_post_path(feed_item, true)
           xml.pubDate rfc822_date(feed_item.created_at.utc)
-          xml.description post_feed_summary(feed_item, true) + '<br/>' + sanitized(feed_item.content.blank? ? feed_item.content : '')
+          xml.description post_feed_summary(feed_item, true) + '<br/>' + (feed_item.content.blank? ? sanitized(feed_item.content) : '')
         elsif feed_item.class == Follow
           follow_feed_summary = follow_feed_summary(feed_item)
           xml.title sanitized(follow_feed_summary, true)[0..-2]
