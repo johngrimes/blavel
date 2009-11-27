@@ -26,6 +26,13 @@ module PicturesHelper
   # Returns alt text for a picture, taking into account that some pictures do 
   # not have a title.
   def picture_alt(picture)
-    picture.title.blank? ? 'untitled' : picture.title
+    title = picture.title.blank? ? 'Picture' : picture.title
+    if picture.location
+      title + ' from ' + display_location(picture.location, true)
+    elsif picture.post && !picture.post.title.blank?
+      title + " from '#{picture.post.title}'"
+    else
+      title
+    end
   end
 end
