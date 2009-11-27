@@ -57,7 +57,6 @@ class BrowseController < ApplicationController
                   inner join locations l on pictures.location_id = l.id
                   inner join countries c on l.country_code = c.code
                   inner join continents co on c.continent_id = co.id where co.code = '#{params[:continent_code]}'
-                  limit 6
                   union
                   select distinct pictures.*
                   from pictures
@@ -65,8 +64,8 @@ class BrowseController < ApplicationController
                   inner join locations_posts lp on p.id = lp.post_id
                   inner join locations l on lp.location_id = l.id
                   inner join countries c on l.country_code = c.code
-                  inner join continents co on c.continent_id = co.id where co.code = '#{params[:continent_code]}'
-                  limit 6) as continent_pictures", 
+                  inner join continents co on c.continent_id = co.id where co.code = '#{params[:continent_code]}')
+                  as continent_pictures", 
       :order => 'RAND()', :limit => 6)
   end
 

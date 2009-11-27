@@ -5,3 +5,4 @@ nbproject
 public/pictures
 public/profile_pictures
 tmp/*
+*.log
