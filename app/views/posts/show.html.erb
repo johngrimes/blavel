@@ -61,7 +61,7 @@
     <% if @post.locations and !@post.locations.empty? %>
       <div id="map-legend">
         <% @post.locations.each do |l| %>
-          <div class="legend-item"><%= display_location(l) %></div>
+          <h2 class="legend-item"><%= display_location(l) %></h2>
         <% end %>
       </div>
     <% end %>

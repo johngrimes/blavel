@@ -86,7 +86,8 @@ next_picture = Picture.find(:first, :conditions => "post_id = #{@picture.post_id
     </tr>
     <tr>
       <td id="picture-layout">
-        <%= link_to image_tag(@picture.public_filename(:display), :alt => @picture.title, :size => picture_size(@picture, 'display'), :alt => @picture.title, :id => 'picture'), @picture.public_filename %>
+        <% picture_title = @picture.title + (@picture.location ? ' from ' + display_location(@picture.location, true) : '') %>
+        <%= link_to image_tag(@picture.public_filename(:display), :alt => @picture.title, :size => picture_size(@picture, 'display'), :alt => picture_title, :id => 'picture'), @picture.public_filename %>
       </td>
       <td id="picture-map-spacer"></td>
       <td id="map-layout">
@@ -99,7 +100,7 @@ next_picture = Picture.find(:first, :conditions => "post_id = #{@picture.post_id
           <%= map_image_tag post_locations, picture_locations, 200, 200 %>
           <% if @picture.location %>
             <div id="map-legend">
-              <div class="legend-item"><%= display_location(@picture.location) %></div>
+              <h2 class="legend-item"><%= display_location(@picture.location) %></h2>
             </div>
           <% end %>
         <% end %>

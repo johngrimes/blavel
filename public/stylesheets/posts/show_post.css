@@ -28,6 +28,7 @@ a.map-link:hover {
     padding-left: 20px;
     background: url(/images/post_marker_sm.gif) top left no-repeat;
     background-position: 0px 3px;
+    font-weight: normal;
 }
 
 #note-form {
