@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(:version => 1010) do
     t.datetime "created_at"
   end
 
+  add_index "mailees", ["user_id"], :name => "index_mailees_on_user_id"
+
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -129,7 +131,6 @@ ActiveRecord::Schema.define(:version => 1010) do
 
   add_index "notes", ["post_id"], :name => "index_notes_on_post_id"
   add_index "notes", ["picture_id"], :name => "index_notes_on_picture_id"
-  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "pictures", :force => true do |t|
     t.integer  "post_id"
