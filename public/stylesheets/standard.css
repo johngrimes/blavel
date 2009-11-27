@@ -198,6 +198,7 @@ a.image-link:hover {
 #footer .notices {
     background: transparent url(/images/page-bottom.png) no-repeat scroll left bottom;
     padding: 20px 40px 40px;
+    position: relative;
 }
 
 #footer p {
@@ -216,6 +217,16 @@ a.image-link:hover {
 #footer #licence {
   border-width: 0px;
   margin: 0px 10px -3px 0px;
+}
+
+#footer .smallspark-logo {
+  position: absolute;
+  top: 23px;
+  right: 40px;
+}
+
+#footer .smallspark-logo:hover {
+  background-color: transparent;
 }
 
 /* END FOOTER STYLES */
