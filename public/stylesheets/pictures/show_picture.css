@@ -28,6 +28,11 @@ img#picture {
     background-color: transparent;
 }
 
+#picture-layout h2 {
+  position: absolute;
+  text-indent: -10000px;
+}
+
 #picture-map-spacer {
     width: 100%;
 }
