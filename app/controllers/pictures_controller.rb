@@ -81,7 +81,7 @@ class PicturesController < ApplicationController
     @post = Post.find(params[:post_id])
 
     # Check that user credentials match owner of post
-    if post_owner != @post.user && !admin_logged_in?
+    if post_owner != @post.user && !post_owner.admin
       raise Exception.new, 'You must be the owner of a post to add pictures to it.'
     end
 
