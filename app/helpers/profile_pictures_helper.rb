@@ -13,7 +13,7 @@ module ProfilePicturesHelper
       link_to image_tag(user.profile_picture.public_filename(format.to_sym), 
         :size => profile_pic_size(user, format), 
         :alt => user.login), 
-        options[:link_to_original] ? user.profile_picture.public_filename(:original) : user_profile_url(:user_login => user.login), 
+        options[:link_to_original] ? user.profile_picture.public_filename : user_profile_url(:user_login => user.login), 
         :title => user.login,
         :class => 'image-link'
     else
