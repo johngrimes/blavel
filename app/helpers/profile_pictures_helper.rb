@@ -4,7 +4,7 @@ module ProfilePicturesHelper
   # the specified format (size).
   #
   # Takes into account that not all users have uploaded a profile pic.
-  def profile_pic_tag(user, format)
+  def profile_pic_tag(user, format, options = {})
     
     # If the user has uploaded a profile pic, use that
     # Otherwise, use the blank profile pic image
@@ -13,7 +13,7 @@ module ProfilePicturesHelper
       link_to image_tag(user.profile_picture.public_filename(format.to_sym), 
         :size => profile_pic_size(user, format), 
         :alt => user.login), 
-        user_profile_url(:user_login => user.login), 
+        options[:link_to_original] ? user.profile_picture.public_filename(:original) : user_profile_url(:user_login => user.login), 
         :title => user.login,
         :class => 'image-link'
     else
