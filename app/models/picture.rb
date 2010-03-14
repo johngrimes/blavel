@@ -3,7 +3,7 @@ class Picture < ActiveRecord::Base
   
   belongs_to :post
   belongs_to :location
-  has_many :notes
+  has_many :notes, :dependent => :destroy
   has_attachment  :storage => :s3,
     :max_size => 20.megabytes,
     :content_type => :image,

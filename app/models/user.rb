@@ -1,10 +1,10 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  has_many :posts
-  has_many :notes
-  has_one :profile_picture
-  has_many :mailees
-  has_one :facebook_user
+  has_many :posts, :dependent => :destroy
+  has_many :notes, :dependent => :destroy
+  has_one :profile_picture, :dependent => :destroy
+  has_many :mailees, :dependent => :destroy
+  has_one :facebook_user, :dependent => :destroy
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password
