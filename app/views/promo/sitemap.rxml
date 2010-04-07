@@ -15,7 +15,7 @@ xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9",
     xml.url do
       xml.loc show_picture_url(:id => picture.id)
       xml.image :image do
-        xml.image :loc, picture.public_filename
+        xml.image :loc, picture.public_filename(:display)
       end
       xml.lastmod picture.updated_at.blank? ? w3c_date(picture.created_at.utc) : w3c_date(picture.updated_at.utc)
       xml.priority '0.6'
