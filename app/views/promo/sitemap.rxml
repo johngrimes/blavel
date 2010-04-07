@@ -2,6 +2,7 @@ set_utf_xml
 xml.instruct!
 xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9",
   'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+  'xmlns:image' => "http://www.google.com/schemas/sitemap-image/1.1",
   'xsi:schemaLocation' => "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" do
   @posts.each do |post|
     xml.url do
@@ -13,6 +14,9 @@ xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9",
   @pictures.each do |picture|
     xml.url do
       xml.loc show_picture_url(:id => picture.id)
+      xml.image :image do
+        xml.image :loc, picture.public_filename
+      end
       xml.lastmod picture.updated_at.blank? ? w3c_date(picture.created_at.utc) : w3c_date(picture.updated_at.utc)
       xml.priority '0.6'
     end
