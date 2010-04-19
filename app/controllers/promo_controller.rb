@@ -1,5 +1,6 @@
 class PromoController < ApplicationController
   layout 'empty'
+  caches_page :sitemap
   
   # Responds with non-member welcome page.
   # Route:: GET /home

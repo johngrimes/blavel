@@ -4,5 +4,7 @@ log/*
 nbproject
 public/pictures
 public/profile_pictures
+public/stylesheets/cache
+public/javascripts/cache
 tmp/*
 *.log
