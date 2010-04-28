@@ -59,7 +59,7 @@ img#picture {
 }
 
 #map-legend {
-    margin: 5px 0px 0px 2px;
+    margin: 8px 0px 0px 2px;
 }
 
 #map-legend .legend-item {
@@ -69,6 +69,7 @@ img#picture {
     background: url(/images/picture_marker_sm.gif) top left no-repeat;
     background-position: 0px 3px;
     font-weight: normal;
+    margin-bottom: 5px;
 }
 
 #note-form {
