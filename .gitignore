@@ -1,5 +1,7 @@
 config/database.yml
 config/environment.rb
+config/facebooker.yml
+config/amazon_s3.yml
 log/*
 nbproject
 public/pictures
