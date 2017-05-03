@@ -2,6 +2,7 @@ config/database.yml
 config/environment.rb
 config/facebooker.yml
 config/amazon_s3.yml
+lib/tasks/move_to_s3.rake
 log/*
 nbproject
 public/pictures
